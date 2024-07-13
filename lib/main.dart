@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:untitled14/Pages/Contractor/splach_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled14/Veiw/Splach_screen/splach_screen.dart';
 
 void main(){
   runApp(MyApp());

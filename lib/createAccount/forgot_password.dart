@@ -5,12 +5,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
 
-class SignIn extends StatefulWidget {
+class ForgotPasswordPage extends StatefulWidget {
   @override
-  _SignInState createState() => _SignInState();
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
                           children: [
                             TextSpan(
 
-                              text:  "Sign",
+                              text:  "Change",
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
@@ -68,7 +68,7 @@ class _SignInState extends State<SignIn> {
                           children: [
                             TextSpan(
 
-                              text:  "in",
+                              text:  "Password",
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
@@ -88,7 +88,7 @@ class _SignInState extends State<SignIn> {
                     children: [
                       TextSpan(
 
-                        text:  "Enter your credential to login",
+                        text:  "use your registered email ",
                         style: GoogleFonts.getFont('Libre Caslon Text',
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
@@ -105,8 +105,8 @@ class _SignInState extends State<SignIn> {
                   child: CustomTextField(
                     maxLength: 100,
                     controller: nameController,
-                    name: "username...",
-                    prefixIcon: Icons.person_rounded,
+                    name: "new password...",
+                    prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
                   ),
@@ -117,65 +117,21 @@ class _SignInState extends State<SignIn> {
                 ),
                   child: CustomTextField(
                     maxLength: 100,
-
-                    obscureText: true,
-                    controller: passController,
-                    name: "password...",
+                    controller: nameController,
+                    name: "confirm password...",
                     prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
                   ),
 
                 ),
-                SizedBox(height: 22),
-
-                Align(
-                  alignment: Alignment.bottomRight, child:
-                Column(
-                  children: [
-                    Container(
-
-                      padding: EdgeInsets.only(bottom: 5),
-                      decoration: BoxDecoration(
-                        border: Border(
-                            bottom: BorderSide (
-                              color: Color(0xff6A3BA8),
-                              width: 1.5,
-                            )
-                        ),
-                      ),
-
-                      child:  InkWell(
-                        onTap: _launchURL,
-                        child:  RichText(
-                          textAlign: TextAlign.right,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text:  "Forgot Password?",
-                                style: GoogleFonts.getFont('Libre Caslon Text',
-
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Color(0xff6A3BA8),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                ),
-                ),
-                SizedBox(height: 24),
+                SizedBox(height: 44),
                 Padding(padding: EdgeInsets.symmetric(horizontal:  1
                 ),
                   child:   CustomButton(
                     width: 250,
                     textcolor: 0xffffffff,
-                    text: 'Sign in',
+                    text: 'Send Code',
                     backgroundColor: Color(0xff6A3BA8),
                     onPressed: () {
                       ScaffoldMessenger.of(context)
@@ -183,66 +139,7 @@ class _SignInState extends State<SignIn> {
                     },
                   ),
                 ),
-                SizedBox(height: 24),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
-                ),
-                  child:   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                            children: [
-                              TextSpan(
 
-                                text:  "Don't have an account ?",
-                                style: GoogleFonts.getFont('Libre Caslon Text',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Color(0xff7F7F7F),
-                                ),
-                              ),
-                            ]
-
-                        ),
-
-                      ),
-                      SizedBox(width: 5),
-                      Container(
-
-                        padding: EdgeInsets.only(bottom: 2),
-                        decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide (
-                                color: Color(0xff6A3BA8),
-                                width: 1.5,
-                              )
-                          ),
-                        ),
-
-                        child:  InkWell(
-                          onTap: _launchURL,
-                          child:  RichText(
-                            textAlign: TextAlign.right,
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text:  "Sign up",
-                                  style: GoogleFonts.getFont('Libre Caslon Text',
-
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Color(0xff6A3BA8),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-                    ],
-                  ),
-                ),
               ],
 
             ),

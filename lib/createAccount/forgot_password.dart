@@ -108,7 +108,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     name: "new password...",
                     prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: Icons.remove_red_eye,
                   ),
 
                 ),
@@ -122,6 +122,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
+                      suffixIcon: Icons.remove_red_eye
                   ),
 
                 ),

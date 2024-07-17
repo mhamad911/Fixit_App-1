@@ -5,6 +5,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String name;
   final IconData prefixIcon;
+  final IconData? suffixIcon;
   final bool obscureText;
   final TextCapitalization textCapitalization;
   final TextInputType inputType;
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.name,
     required this.prefixIcon,
+    required this.suffixIcon,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     required this.inputType,
@@ -28,7 +30,7 @@ class CustomTextField extends StatelessWidget {
       elevation: 8,
       //This is the shadow color
       shadowColor: Colors.black,
-       borderRadius: BorderRadius.all(Radius.circular(11)),
+      borderRadius: BorderRadius.all(Radius.circular(11)),
 
       child: TextField(
 
@@ -55,6 +57,7 @@ class CustomTextField extends StatelessWidget {
           errorBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
           prefixIcon: Icon(prefixIcon),
+          suffixIcon: Icon(suffixIcon),
           isDense: true,
           labelText: name,
           counterText: "",

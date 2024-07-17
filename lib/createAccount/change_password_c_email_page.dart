@@ -108,7 +108,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     name: "Email...",
                     prefixIcon: Icons.email_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),

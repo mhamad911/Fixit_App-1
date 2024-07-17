@@ -119,7 +119,7 @@ class _SignUpState extends State<SignUp> {
                     name: "username...",
                     prefixIcon: Icons.person_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),
@@ -132,7 +132,7 @@ class _SignUpState extends State<SignUp> {
                     name: "Email...",
                     prefixIcon: Icons.email_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),
@@ -146,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                     name: "phone...",
                     prefixIcon: Icons.phone_android_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),
@@ -193,7 +193,7 @@ class _SignUpState extends State<SignUp> {
                     name: "type your street address...",
                     prefixIcon: Icons.streetview_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),
@@ -204,10 +204,10 @@ class _SignUpState extends State<SignUp> {
                     maxLength: 100,
                     obscureText: true,
                     controller: passController,
-                    name: "phone...",
+                    name: "password...",
                     prefixIcon: Icons.phone_android_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: Icons.remove_red_eye,
                   ),
 
                 ),
@@ -218,10 +218,10 @@ class _SignUpState extends State<SignUp> {
                     maxLength: 100,
                     obscureText: true,
                     controller: passController,
-                    name: "phone...",
+                    name: "confirm password...",
                     prefixIcon: Icons.phone_android_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: Icons.remove_red_eye,
                   ),
 
                 ),

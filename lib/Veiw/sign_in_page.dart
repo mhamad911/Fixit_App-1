@@ -108,7 +108,7 @@ class _SignInState extends State<SignIn> {
                     name: "username...",
                     prefixIcon: Icons.person_rounded,
                     inputType: TextInputType.name,
-                    textCapitalization: TextCapitalization.words,
+                    textCapitalization: TextCapitalization.words, suffixIcon: null,
                   ),
 
                 ),
@@ -124,6 +124,7 @@ class _SignInState extends State<SignIn> {
                     prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
+                      suffixIcon: Icons.remove_red_eye
                   ),
 
                 ),

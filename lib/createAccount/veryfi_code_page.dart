@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -6,6 +5,8 @@ import '../GeneralComponents/custom_textfield_verify.dart';
 import '/GeneralComponents/Custom_Button.dart';
 
 class VerifyPage extends StatefulWidget {
+  const VerifyPage({super.key});
+
   @override
   _VerifyPageState createState() => _VerifyPageState();
 }
@@ -16,15 +17,15 @@ class _VerifyPageState extends State<VerifyPage> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
-  set _text(String _text) {}
+  set _text(String text) {}
   @override
   Widget build(BuildContext context) {
-    _launchURL() async {
-      Uri _url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(_url)) {
-        await launchUrl(_url);
+    launchURL() async {
+      Uri url = Uri.parse('https://www.educative.io');
+      if (await launchUrl(url)) {
+        await launchUrl(url);
       } else {
-        throw 'Could not launch $_url';
+        throw 'Could not launch $url';
       }
     }
     return Scaffold(
@@ -49,7 +50,7 @@ class _VerifyPageState extends State<VerifyPage> {
           ),
           child:   Container(
             width:  double.maxFinite,
-            padding: EdgeInsets.all(37.2),
+            padding: const EdgeInsets.all(37.2),
             child: Column  (
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -65,7 +66,7 @@ class _VerifyPageState extends State<VerifyPage> {
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: Color(0xff6A3BA8),
+                                color: const Color(0xff6A3BA8),
                               ),
                             ),
                           ]
@@ -73,7 +74,7 @@ class _VerifyPageState extends State<VerifyPage> {
                       ),
 
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     RichText(
                       text: TextSpan(
                           children: [
@@ -83,7 +84,7 @@ class _VerifyPageState extends State<VerifyPage> {
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: Color(0xff000000),
+                                color: const Color(0xff000000),
                               ),
                             ),
                           ]
@@ -93,7 +94,7 @@ class _VerifyPageState extends State<VerifyPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 26),
+                const SizedBox(height: 26),
                 RichText(
 
                   text: TextSpan(
@@ -104,7 +105,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         style: GoogleFonts.getFont('Libre Caslon Text',
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                         ),
                       ),
 
@@ -121,15 +122,15 @@ class _VerifyPageState extends State<VerifyPage> {
                         style: GoogleFonts.getFont('Libre Caslon Text',
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                         ),
                       ),
 
                     ],
                   ),
                 ),
-                SizedBox(height: 34),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 34),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -143,7 +144,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
 
                       CustomTextFieldVerify(
                         width: 55,
@@ -153,7 +154,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
 
                       CustomTextFieldVerify(
                         width: 55,
@@ -163,7 +164,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
-                      SizedBox(width: 20),
+                      const SizedBox(width: 20),
 
                       CustomTextFieldVerify(
                         width: 55,
@@ -178,8 +179,8 @@ class _VerifyPageState extends State<VerifyPage> {
                   ),
 
                 ),
-                SizedBox(height: 44),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 44),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child:   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -193,7 +194,7 @@ class _VerifyPageState extends State<VerifyPage> {
                                 style: GoogleFonts.getFont('Libre Caslon Text',
                                   fontWeight: FontWeight.w500,
                                   fontSize: 12,
-                                  color: Color(0xff7F7F7F),
+                                  color: const Color(0xff7F7F7F),
                                 ),
                               ),
                             ]
@@ -201,11 +202,11 @@ class _VerifyPageState extends State<VerifyPage> {
                         ),
 
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Container(
 
-                        padding: EdgeInsets.only(bottom: 2),
-                        decoration: BoxDecoration(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        decoration: const BoxDecoration(
                           border: Border(
                               bottom: BorderSide (
                                 color: Color(0xff6A3BA8),
@@ -215,7 +216,7 @@ class _VerifyPageState extends State<VerifyPage> {
                         ),
 
                         child:  InkWell(
-                          onTap: _launchURL,
+                          onTap: launchURL,
                           child:  RichText(
                             textAlign: TextAlign.right,
                             text: TextSpan(
@@ -226,7 +227,7 @@ class _VerifyPageState extends State<VerifyPage> {
 
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
-                                    color: Color(0xff6A3BA8),
+                                    color: const Color(0xff6A3BA8),
                                   ),
                                 ),
                               ],
@@ -238,14 +239,14 @@ class _VerifyPageState extends State<VerifyPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: 44),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 44),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child:   CustomButton(
                     width: 250,
                     textcolor: 0xffffffff,
                     text: 'Verify',
-                    backgroundColor: Color(0xff6A3BA8),
+                    backgroundColor: const Color(0xff6A3BA8),
                     onPressed: () {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(const SnackBar(content: Text('Sign in')));

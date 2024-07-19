@@ -27,7 +27,7 @@ String dropdownValue = list.first;
       elevation: 8,
       //This is the shadow color
       shadowColor: Colors.black,
-      borderRadius: BorderRadius.all(Radius.circular(11)),
+      borderRadius: const BorderRadius.all(Radius.circular(11)),
 
       child:     ButtonTheme(
         alignedDropdown: true,
@@ -58,7 +58,7 @@ String dropdownValue = list.first;
 
             border: MaterialStateOutlineInputBorder.resolveWith(
 
-                  (states) => states.contains(MaterialState.focused)
+                  (states) => states.contains(WidgetState.focused)
                   ? const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
                   : const OutlineInputBorder(
                 borderSide: BorderSide.none,

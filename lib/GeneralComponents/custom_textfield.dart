@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   final int maxLength;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.controller,
     required this.name,
     required this.prefixIcon,
@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     required this.inputType,
     required this.maxLength,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
       elevation: 8,
       //This is the shadow color
       shadowColor: Colors.black,
-      borderRadius: BorderRadius.all(Radius.circular(11)),
+      borderRadius: const BorderRadius.all(Radius.circular(11)),
 
       child: TextField(
 

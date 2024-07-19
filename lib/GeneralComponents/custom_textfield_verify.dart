@@ -12,7 +12,7 @@ class CustomTextFieldVerify extends StatelessWidget {
   final double width;
 
   const CustomTextFieldVerify({
-    Key? key,
+    super.key,
     required this.controller,
     required this.name,
      required this.prefixIcon,
@@ -22,7 +22,7 @@ class CustomTextFieldVerify extends StatelessWidget {
     required this.maxLength,
     required this.width,
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CustomTextFieldVerify extends StatelessWidget {
       elevation: 8,
       //This is the shadow color
       shadowColor: Colors.black,
-       borderRadius: BorderRadius.all(Radius.circular(11)),
+       borderRadius: const BorderRadius.all(Radius.circular(11)),
 
       child: SizedBox(
         height: 50,

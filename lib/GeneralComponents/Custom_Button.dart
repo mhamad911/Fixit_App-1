@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.backgroundColor = Colors.red,
     required this.onPressed,
     required this.width,
     required this.textcolor,
-  }) : super(key: key);
+  });
 
   final String text;
   final Color backgroundColor;
@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         // alignment: Alignment.center,
         decoration: BoxDecoration(
-            border: Border.all(color: Color(0xff6A3BA8),),
+            border: Border.all(color: const Color(0xff6A3BA8),),
 
             color: backgroundColor,
             borderRadius: BorderRadius.circular(11),

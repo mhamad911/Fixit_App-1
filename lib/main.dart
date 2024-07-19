@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled14/Veiw/Splach_screen/splach_screen.dart';
 
 void main(){
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -15,7 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner:false,
         home:SplachScreen(),

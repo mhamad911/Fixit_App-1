@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Custom_Button.dart';
-import 'Custom_Star_widget.dart';
+import '../../../../../../GeneralComponents/Custom_Button.dart';
+import '../../../../../../GeneralComponents/Custom_Star_widget.dart';
+
 
 class CustomCard extends StatelessWidget {
   @override

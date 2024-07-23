@@ -233,6 +233,8 @@ class _SignUpState extends State<SignUp> {
 
                     children: [
                       CustomButton(
+                        fontSize: 12,
+                        height: 50,
                         textcolor: 0xffFFFFFF,
                         text: 'Register',
                         backgroundColor: Color(0xff6A3BA8),
@@ -244,6 +246,8 @@ class _SignUpState extends State<SignUp> {
                       ),
                       SizedBox(width: 22  ),
                       CustomButton(
+                        fontSize: 12,
+                        height: 50,
                         textcolor: 0xff6A3BA8,
                         width: 120,
                         text: 'Cancel',

@@ -141,11 +141,23 @@ class _VerifyPageState extends State<VerifyPage> {
                         controller: nameController,
                         name: "-",
                         inputType: TextInputType.name,
+                        textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded, align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
+                      ),
+                      SizedBox(width: 20),
+
+                      CustomTextFieldVerify(
+                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
+                        width: 55,
+                        maxLength: 1,
+                        controller: nameController,
+                        name: "-",
+                        inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
                       SizedBox(width: 20),
 
                       CustomTextFieldVerify(
+                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
                         width: 55,
                         maxLength: 1,
                         controller: nameController,
@@ -157,16 +169,7 @@ class _VerifyPageState extends State<VerifyPage> {
 
                       CustomTextFieldVerify(
                         width: 55,
-                        maxLength: 1,
-                        controller: nameController,
-                        name: "-",
-                        inputType: TextInputType.name,
-                        textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
-                      ),
-                      SizedBox(width: 20),
-
-                      CustomTextFieldVerify(
-                        width: 55,
+                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
                         maxLength: 1,
                         controller: nameController,
                         name: "-",
@@ -249,7 +252,7 @@ class _VerifyPageState extends State<VerifyPage> {
                     onPressed: () {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(const SnackBar(content: Text('Sign in')));
-                    },
+                    }, height: 50, fontSize: 12,
                   ),
                 ),
 

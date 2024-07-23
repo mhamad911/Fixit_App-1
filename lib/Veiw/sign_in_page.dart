@@ -181,7 +181,7 @@ class _SignInState extends State<SignIn> {
                     onPressed: () {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(const SnackBar(content: Text('Sign in')));
-                    },
+                    }, height: 50, fontSize: 12,
                   ),
                 ),
                 SizedBox(height: 24),

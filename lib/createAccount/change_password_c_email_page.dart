@@ -123,7 +123,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     onPressed: () {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(const SnackBar(content: Text('Sign in')));
-                    },
+                    }, height: 50, fontSize: 12,
                   ),
                 ),
 

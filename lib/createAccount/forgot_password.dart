@@ -130,6 +130,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 Padding(padding: EdgeInsets.symmetric(horizontal:  1
                 ),
                   child:   CustomButton(
+                    fontSize: 12,
+                    height: 50,
                     width: 250,
                     textcolor: 0xffffffff,
                     text: 'Send Code',

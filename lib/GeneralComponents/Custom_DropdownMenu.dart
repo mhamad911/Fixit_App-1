@@ -5,19 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 const List<String> list = <String>['Contractor','HomeOwner'];
 
 class DropdownMenuExample extends StatefulWidget {
+
   const DropdownMenuExample({
     super.key,
   });
 
   @override
   State<DropdownMenuExample> createState() => _DropdownMenuExampleState();
-
 }
 
 class _DropdownMenuExampleState extends State<DropdownMenuExample> {
 
-
-String dropdownValue = list.first;
+  String dropdownValue = list.first;
 
   @override
   Widget build(BuildContext context) {

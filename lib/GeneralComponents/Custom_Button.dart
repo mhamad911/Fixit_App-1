@@ -10,8 +10,12 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     required this.width,
     required this.textcolor,
-  }) : super(key: key);
+    required this.height,
+    required this.fontSize,
 
+  }) : super(key: key);
+  final double fontSize;
+final double height;
   final String text;
   final Color backgroundColor;
   final Function() onPressed;
@@ -44,7 +48,7 @@ class CustomButton extends StatelessWidget {
           style: GoogleFonts.getFont('Libre Caslon Text',
 
             fontWeight: FontWeight.w500,
-            fontSize: 10,
+            fontSize: fontSize,
             color: Color(textcolor),
           ),
         ),

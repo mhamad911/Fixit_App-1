@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,10 +11,14 @@ class CustomTextFieldVerify extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final TextInputType inputType;
   final int maxLength;
+  final int? maxLine;
   final double width;
-
+  final double height;
+  final String HintText;
+ final TextAlign align;
   const CustomTextFieldVerify({
     Key? key,
+    required this.align,
     required this.controller,
     required this.name,
      required this.prefixIcon,
@@ -20,7 +26,11 @@ class CustomTextFieldVerify extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     required this.inputType,
     required this.maxLength,
+    required this.maxLine,
     required this.width,
+    required this.height,
+
+    required this.HintText,
 
   }) : super(key: key);
 
@@ -34,46 +44,46 @@ class CustomTextFieldVerify extends StatelessWidget {
        borderRadius: BorderRadius.all(Radius.circular(11)),
 
       child: SizedBox(
-        height: 50,
+        height: height,
         width: width,
-        child: TextField(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20,top: 10,right: 20,bottom: 10),
 
-          enabled: true,
-          controller: controller,
-          textCapitalization: textCapitalization,
-          maxLength: maxLength,
-          maxLines: 1,
-          obscureText: obscureText,
-          keyboardType: inputType,
-          textAlign: TextAlign.center,
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                enabled: true,
+                controller: controller,
+                textCapitalization: textCapitalization,
+                maxLength: maxLength,
+                maxLines: maxLine,
+                obscureText: obscureText,
+                textAlign: align,
+                style: const TextStyle(
 
-          style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                ),
 
-            color: Colors.black,
-            fontSize: 12,
-          ),
+                decoration: InputDecoration(
+                  alignLabelWithHint: true,
 
-          decoration: InputDecoration(
-            alignLabelWithHint: true,
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  disabledBorder: InputBorder.none,
 
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            isDense: true,
-            label: const Center(
-              child: Text("-"),
+                  isDense: true,
+                  counterText: "",
+                  labelStyle: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.black),
+                  suffixStyle: GoogleFonts.getFont('Libre Caslon Text', fontWeight: FontWeight.w400,
+                  ),
+
+                ),
+              ),
             ),
-            counterText: "",
-            labelStyle: const TextStyle(
-                fontSize: 10,
-                color: Colors.black),
-            suffixStyle: GoogleFonts.getFont('Libre Caslon Text', fontWeight: FontWeight.w400,
-            ),
-
-          ),
-        ),
       ),
     );
   }

@@ -139,29 +139,26 @@ class _VerifyPageState extends State<VerifyPage> {
                         width: 55,
                         maxLength: 1,
                         controller: nameController,
-                        name: "-",
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded, align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
                       ),
                       SizedBox(width: 20),
 
                       CustomTextFieldVerify(
-                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
+                        align: TextAlign.center, height: 50, maxLine: 1, HintText: '-',
                         width: 55,
                         maxLength: 1,
                         controller: nameController,
-                        name: "-",
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
                       SizedBox(width: 20),
 
                       CustomTextFieldVerify(
-                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
+                        align: TextAlign.center, height: 50, maxLine: 1, HintText: '-',
                         width: 55,
                         maxLength: 1,
                         controller: nameController,
-                        name: "-",
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: Icons.numbers_rounded,
                       ),
@@ -169,10 +166,9 @@ class _VerifyPageState extends State<VerifyPage> {
 
                       CustomTextFieldVerify(
                         width: 55,
-                        align: TextAlign.left, height: 50, maxLine: 1, HintText: '',
+                        align: TextAlign.center, height: 50, maxLine: 1, HintText: '-',
                         maxLength: 1,
                         controller: nameController,
-                        name: "-",
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, prefixIcon: null,
                       ),

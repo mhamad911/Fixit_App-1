@@ -38,10 +38,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: CustomSearchfield(
                 maxLength: 100,
                 controller: searchController,
-                name: "Search...",
                 prefixIcon: Icons.search_rounded,
                 inputType: TextInputType.name,
-                textCapitalization: TextCapitalization.words,
+                textCapitalization: TextCapitalization.words, HintText: 'Search...',
               ),
             ),
           ]

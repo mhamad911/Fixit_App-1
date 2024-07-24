@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextFieldVerify extends StatelessWidget {
   final TextEditingController controller;
-  final String name;
   final IconData? prefixIcon;
   final bool obscureText;
   final TextCapitalization textCapitalization;
@@ -20,7 +19,6 @@ class CustomTextFieldVerify extends StatelessWidget {
     Key? key,
     required this.align,
     required this.controller,
-    required this.name,
      required this.prefixIcon,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
@@ -29,7 +27,6 @@ class CustomTextFieldVerify extends StatelessWidget {
     required this.maxLine,
     required this.width,
     required this.height,
-
     required this.HintText,
 
   }) : super(key: key);
@@ -66,13 +63,12 @@ class CustomTextFieldVerify extends StatelessWidget {
 
                 decoration: InputDecoration(
                   alignLabelWithHint: true,
-
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   errorBorder: InputBorder.none,
                   disabledBorder: InputBorder.none,
-
+                  hintText: HintText,
                   isDense: true,
                   counterText: "",
                   labelStyle: const TextStyle(

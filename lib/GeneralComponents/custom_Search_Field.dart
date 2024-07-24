@@ -3,22 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomSearchfield extends StatelessWidget {
   final TextEditingController controller;
-  final String name;
   final IconData? prefixIcon;
   final bool obscureText;
   final TextCapitalization textCapitalization;
   final TextInputType inputType;
   final int maxLength;
+  final String HintText;
 
   const CustomSearchfield({
     Key? key,
     required this.controller,
-    required this.name,
      required this.prefixIcon,
     this.obscureText = false,
     this.textCapitalization = TextCapitalization.none,
     required this.inputType,
     required this.maxLength,
+    required this.HintText,
 
   }) : super(key: key);
 
@@ -43,7 +43,7 @@ class CustomSearchfield extends StatelessWidget {
             maxLines: 1,
             obscureText: obscureText,
             keyboardType: inputType,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
 
             style: const TextStyle(
               color: Colors.black,
@@ -51,13 +51,14 @@ class CustomSearchfield extends StatelessWidget {
             ),
 
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(17.0),
+              contentPadding: EdgeInsets.only(left: 14),
               alignLabelWithHint: true,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
+              hintText: HintText,
               prefixIcon: Padding(
                 padding: const EdgeInsets.only(right: 7),
                 child: Material
@@ -69,7 +70,6 @@ class CustomSearchfield extends StatelessWidget {
                       size: 21,)),
               ),
               isDense: true,
-              labelText: name,
               counterText: "",
               labelStyle: const TextStyle(
 

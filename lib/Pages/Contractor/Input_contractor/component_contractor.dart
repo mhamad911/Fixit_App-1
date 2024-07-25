@@ -5,7 +5,7 @@ class TextFailedWithWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         TextField(
           decoration:InputDecoration(

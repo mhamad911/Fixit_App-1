@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '/GeneralComponents/Custom_DropdownMenu.dart';
@@ -7,6 +6,8 @@ import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
 
 class SignUp extends StatefulWidget {
+  const SignUp({super.key});
+
 
   @override
   _SignUpState createState() => _SignUpState();
@@ -14,7 +15,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   late String _selected;
-  List<Map> _myJson = [
+  final List<Map> _myJson = [
     {},
     {},
     {},
@@ -29,15 +30,15 @@ class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
   final passController = TextEditingController();
 
-  set _text(String _text) {}
+  set _text(String text) {}
   @override
   Widget build(BuildContext context) {
-    _launchURL() async {
-      Uri _url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(_url)) {
-        await launchUrl(_url);
+    launchURL() async {
+      Uri url = Uri.parse('https://www.educative.io');
+      if (await launchUrl(url)) {
+        await launchUrl(url);
       } else {
-        throw 'Could not launch $_url';
+        throw 'Could not launch $url';
       }
     }
     return Scaffold(
@@ -50,7 +51,7 @@ class _SignUpState extends State<SignUp> {
           ),
           child:   Container(
             width:  double.maxFinite,
-            padding: EdgeInsets.all(37.2),
+            padding: const EdgeInsets.all(37.2),
             child: Column  (
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -66,7 +67,7 @@ class _SignUpState extends State<SignUp> {
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: Color(0xff6A3BA8),
+                                color: const Color(0xff6A3BA8),
                               ),
                             ),
                           ]
@@ -74,7 +75,7 @@ class _SignUpState extends State<SignUp> {
                       ),
 
                     ),
-                    SizedBox(width: 5),
+                    const SizedBox(width: 5),
                     RichText(
                       text: TextSpan(
                           children: [
@@ -84,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                               style: GoogleFonts.getFont('Libre Caslon Text',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: Color(0xff000000),
+                                color: const Color(0xff000000),
                               ),
                             ),
                           ]
@@ -94,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 RichText(
                   text: TextSpan(
                     children: [
@@ -104,14 +105,14 @@ class _SignUpState extends State<SignUp> {
                         style: GoogleFonts.getFont('Libre Caslon Text',
                           fontWeight: FontWeight.w500,
                           fontSize: 12,
-                          color: Color(0xff000000),
+                          color: const Color(0xff000000),
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -123,8 +124,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -136,8 +137,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -150,10 +151,10 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 22),
+                const SizedBox(height: 22),
 
 
-                Align(
+                const Align(
                   alignment: Alignment.bottomLeft, child:
                 Column(
                   children: [
@@ -163,10 +164,10 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
                 ),
-                SizedBox(height: 22),
+                const SizedBox(height: 22),
 
 
-                Align(
+                const Align(
                   alignment: Alignment.bottomLeft, child:
                 Row(
                   children: [
@@ -183,8 +184,8 @@ class _SignUpState extends State<SignUp> {
                   ],
                 ),
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -197,8 +198,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -211,8 +212,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 22),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 22),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
                     maxLength: 100,
@@ -225,8 +226,8 @@ class _SignUpState extends State<SignUp> {
                   ),
 
                 ),
-                SizedBox(height: 24),
-                Padding(padding: EdgeInsets.symmetric(horizontal:  1
+                const SizedBox(height: 24),
+                Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                 ),
                   child:   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -237,21 +238,21 @@ class _SignUpState extends State<SignUp> {
                         height: 50,
                         textcolor: 0xffFFFFFF,
                         text: 'Register',
-                        backgroundColor: Color(0xff6A3BA8),
+                        backgroundColor: const Color(0xff6A3BA8),
                         width: 120,
                         onPressed: () {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(content: Text('Sign in')));
                         },
                       ),
-                      SizedBox(width: 22  ),
+                      const SizedBox(width: 22  ),
                       CustomButton(
                         fontSize: 12,
                         height: 50,
                         textcolor: 0xff6A3BA8,
                         width: 120,
                         text: 'Cancel',
-                        backgroundColor: Color(0xffFFFFFF),
+                        backgroundColor: const Color(0xffFFFFFF),
                         onPressed: () {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(content: Text('Sign in')));

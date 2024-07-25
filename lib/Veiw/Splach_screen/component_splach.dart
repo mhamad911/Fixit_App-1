@@ -3,7 +3,7 @@ import 'package:untitled14/utils/constans.dart';
 
 class Component extends StatelessWidget {
   final Widget child;
-   Component({
+   const Component({super.key, 
      required this.child,
      });
 
@@ -15,7 +15,7 @@ class Component extends StatelessWidget {
           color:Colors.black87,
         ),
           alignment: Alignment.center,
-          margin: EdgeInsets.only(left: 140, top: 140),
+          margin: const EdgeInsets.only(left: 140, top: 140),
           // padding: EdgeInsets.only(left: 10, top: 10),
           height: 120,
           width: 120,

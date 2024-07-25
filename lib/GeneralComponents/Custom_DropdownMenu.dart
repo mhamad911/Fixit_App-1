@@ -26,7 +26,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
       elevation: 8,
       //This is the shadow color
       shadowColor: Colors.black,
-      borderRadius: BorderRadius.all(Radius.circular(11)),
+      borderRadius: const BorderRadius.all(Radius.circular(11)),
 
       child:     ButtonTheme(
         alignedDropdown: true,
@@ -57,7 +57,7 @@ class _DropdownMenuExampleState extends State<DropdownMenuExample> {
 
             border: MaterialStateOutlineInputBorder.resolveWith(
 
-                  (states) => states.contains(MaterialState.focused)
+                  (states) => states.contains(WidgetState.focused)
                   ? const OutlineInputBorder(borderSide: BorderSide(color: Colors.red))
                   : const OutlineInputBorder(
                 borderSide: BorderSide.none,

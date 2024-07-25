@@ -10,7 +10,7 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final TextInputType inputType;
   final int maxLength;
-
+  final String? Function(String?)? validator;
   const CustomTextField({
     Key? key,
     required this.controller,
@@ -21,6 +21,7 @@ class CustomTextField extends StatelessWidget {
     this.textCapitalization = TextCapitalization.none,
     required this.inputType,
     required this.maxLength,
+    required this.validator,
   }) : super(key: key);
 
   @override
@@ -32,8 +33,7 @@ class CustomTextField extends StatelessWidget {
       shadowColor: Colors.black,
       borderRadius: BorderRadius.all(Radius.circular(11)),
 
-      child: TextField(
-
+      child: TextFormField(
         enabled: true,
         controller: controller,
         textCapitalization: textCapitalization,
@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: inputType,
         textAlign: TextAlign.start,
-
+        validator: validator,
         style: const TextStyle(
 
           color: Colors.black,

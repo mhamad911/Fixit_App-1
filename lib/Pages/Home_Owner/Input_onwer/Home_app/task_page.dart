@@ -18,33 +18,14 @@ class Taskpage extends StatefulWidget {
 }
 
 class _TaskpageState extends State<Taskpage> {
-  late String _selected;
-  List<Map> _myJson = [
-    {},
-    {},
-    {},
-    {},
 
-
-  ];
-  String? selectedValue;
-  late OverlayPortalController controller1;
-  late OverlayPortalController controller2;
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
+  final titleController = TextEditingController();
+  final describeController = TextEditingController();
+  final locationController = TextEditingController();
 
   set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
-    _launchURL() async {
-      Uri _url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(_url)) {
-        await launchUrl(_url);
-      } else {
-        throw 'Could not launch $_url';
-      }
-    }
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -114,9 +95,9 @@ class _TaskpageState extends State<Taskpage> {
 
                       CustomTextFieldVerify(
                         maxLine: 1,
-                        HintText: 'mhamad',
+                        HintText: 'Type Title...',
                         maxLength: 100,
-                        controller: nameController,
+                        controller: titleController,
                         prefixIcon: null,
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, width: 220, align: TextAlign.left, height: 50,
@@ -157,9 +138,9 @@ class _TaskpageState extends State<Taskpage> {
 
                       CustomTextFieldVerify(
                         maxLine: 20,
-                        HintText: 'mhamad',
+                        HintText: 'describe your task here...',
                         maxLength: 400,
-                        controller: nameController,
+                        controller: describeController,
                         prefixIcon: null,
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, width: 300, align: TextAlign.left, height: 200,
@@ -221,7 +202,7 @@ class _TaskpageState extends State<Taskpage> {
                   child: CustomTextField(
                     maxLength: 100,
                     obscureText: false,
-                    controller: nameController,
+                    controller: locationController,
                     name: "Type the Location of your task..",
                     prefixIcon: Icons.streetview_rounded,
                     inputType: TextInputType.name,

@@ -13,33 +13,12 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  late String _selected;
-  List<Map> _myJson = [
-    {},
-    {},
-    {},
-    {},
 
-
-  ];
-  String? selectedValue;
-  late OverlayPortalController controller1;
-  late OverlayPortalController controller2;
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
 
   set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
-    _launchURL() async {
-      Uri _url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(_url)) {
-        await launchUrl(_url);
-      } else {
-        throw 'Could not launch $_url';
-      }
-    }
+
     return Scaffold(
       bottomNavigationBar: SnackBarBody(
 

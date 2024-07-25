@@ -16,33 +16,15 @@ class ContractPage extends StatefulWidget {
 }
 
 class _ContractPageState extends State<ContractPage> {
-  late String _selected;
-  List<Map> _myJson = [
-    {},
-    {},
-    {},
-    {},
 
 
-  ];
-  String? selectedValue;
-  late OverlayPortalController controller1;
-  late OverlayPortalController controller2;
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
+  final dateController = TextEditingController();
+  final priceController = TextEditingController();
+  final DateController = TextEditingController();
 
   set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
-    _launchURL() async {
-      Uri _url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(_url)) {
-        await launchUrl(_url);
-      } else {
-        throw 'Could not launch $_url';
-      }
-    }
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -160,7 +142,7 @@ class _ContractPageState extends State<ContractPage> {
                         maxLine: 1,
                         HintText: 'type date....',
                         maxLength: 100,
-                        controller: nameController,
+                        controller: dateController,
                         prefixIcon: null,
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, width: 160, align: TextAlign.left, height: 50,
@@ -320,7 +302,7 @@ class _ContractPageState extends State<ContractPage> {
                         maxLine: 1,
                         HintText: 'type price....',
                         maxLength: 100,
-                        controller: nameController,
+                        controller: priceController,
                         prefixIcon: null,
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, width: 210, align: TextAlign.left, height: 50,
@@ -358,7 +340,7 @@ class _ContractPageState extends State<ContractPage> {
                         maxLine: 1,
                         HintText: 'type date...',
                         maxLength: 100,
-                        controller: nameController,
+                        controller: DateController,
                         prefixIcon: null,
                         inputType: TextInputType.name,
                         textCapitalization: TextCapitalization.words, width: 180, align: TextAlign.left, height: 50,

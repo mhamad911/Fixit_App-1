@@ -20,7 +20,14 @@ class _SignInState extends State<SignIn> {
   set _text(String text) {}
   @override
   Widget build(BuildContext context) {
-
+    launchURL() async {
+      Uri url = Uri.parse('https://www.educative.io');
+      if (await launchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,

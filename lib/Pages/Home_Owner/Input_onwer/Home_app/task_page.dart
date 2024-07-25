@@ -23,7 +23,6 @@ class _TaskpageState extends State<Taskpage> {
   final describeController = TextEditingController();
   final locationController = TextEditingController();
 
-  set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -125,7 +125,7 @@ class _SignInState extends State<SignIn> {
                     prefixIcon: Icons.lock,
                     inputType: TextInputType.name,
                     textCapitalization: TextCapitalization.words,
-                      suffixIcon: Icons.remove_red_eye
+                      suffixIcon: Icons.remove_red_eye,
                   ),
 
                 ),

@@ -11,7 +11,7 @@ class _SplachScreenState extends State<SplachScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Colors.white,
+      backgroundColor:Color(0xff6A3BA8),
       body:Column(
         children: [
           Lottie.asset('assets/Logo.json'),

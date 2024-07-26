@@ -12,7 +12,7 @@ class ImageTextButton extends StatelessWidget {
   ImageTextButton({
     required this.onPressed,
     required this.image,
-    this.imageHeight = 50,
+    this.imageHeight = 66,
     this.radius = 12,
     required this.text,
   });
@@ -21,35 +21,35 @@ class ImageTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Material(
       color:  Color(0xff6A3BA8) ,
-        elevation: 8,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
+      elevation: 8,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
 
-          onTap: onPressed,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Ink.image(
-                width: 80,
-                image: image,
-                height: imageHeight,
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: 2),
-              Text(
+        onTap: onPressed,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Ink.image(
+              width: 88,
+              image: image,
+              height: imageHeight,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: 2),
+            Text(
 
-                text,
-                style: GoogleFonts.getFont('Libre Caslon Text',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 10,
-                  color: Colors.white,
-                ),
+              text,
+              style: GoogleFonts.getFont('Libre Caslon Text',
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                color: Colors.white,
               ),
-              SizedBox(height: 5),
-            ],
-          ),
+            ),
+            SizedBox(height: 5),
+          ],
         ),
+      ),
     );
   }
 }

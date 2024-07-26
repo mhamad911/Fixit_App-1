@@ -12,10 +12,15 @@ class _SplachScreenState extends State<SplachScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:Color(0xff6A3BA8),
-      body:Column(
-        children: [
-          Lottie.asset('assets/Logo.json'),
-        ],
+      body:Padding(
+        padding: const EdgeInsets.all(135),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            Lottie.asset('assets/Logo.json'),
+          ],
+        ),
       )
     );
   }

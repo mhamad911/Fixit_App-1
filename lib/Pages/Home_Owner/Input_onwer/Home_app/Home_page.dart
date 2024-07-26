@@ -12,10 +12,8 @@ class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
-
-
-  set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
 
@@ -38,158 +36,197 @@ class _HomePageState extends State<HomePage> {
           child: Column  (
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                          children: [
+                            TextSpan(
 
-                            text:  "Pick a",
-                            style: GoogleFonts.getFont('Libre Caslon Text',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xff000000),
+                              text:  "Pick a",
+                              style: GoogleFonts.getFont('Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Color(0xff000000),
+                              ),
                             ),
-                          ),
-                        ]
+                          ]
+
+                      ),
 
                     ),
+                    SizedBox(width: 5),
+                    RichText(
+                      text: TextSpan(
+                          children: [
+                            TextSpan(
 
-                  ),
-                  SizedBox(width: 5),
-                  RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
-
-                            text:  "Service",
-                            style: GoogleFonts.getFont('Libre Caslon Text',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xff6A3BA8),
+                              text:  "Service",
+                              style: GoogleFonts.getFont('Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Color(0xff6A3BA8),
+                              ),
                             ),
-                          ),
-                        ]
+                          ]
+
+                      ),
 
                     ),
+                    SizedBox(width: 5),
+                    RichText(
+                      text: TextSpan(
+                          children: [
+                            TextSpan(
 
-                  ),
-                  SizedBox(width: 5),
-                  RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
-
-                            text:  "that you need!",
-                            style: GoogleFonts.getFont('Libre Caslon Text',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Color(0xff000000),
+                              text:  "that you need!",
+                              style: GoogleFonts.getFont('Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Color(0xff000000),
+                              ),
                             ),
-                          ),
-                        ]
+                          ]
+
+                      ),
 
                     ),
-
-                  ),
-                ],
+                  ],
+                ),
               ),
-              SizedBox(height: 33),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 44),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                ],
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 33),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 33,),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'
-                  ),
-                ],
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 33),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.only(top: 33, bottom: 33),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [
-                  ImageTextButton(
-                    onPressed: () {},
-                    image: AssetImage('images/download.jpg'),
-                    text:'Cleaning',
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                    onPressed: () {},
-                    image: AssetImage('images/download.jpg'),
-                    text:'Cleaning',
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                    onPressed: () {},
-                    image: AssetImage('images/download.jpg'),
-                    text:'Cleaning',
-                  ),
-                ],
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: ImageTextButton(
+                        onPressed: () {},
+                        image: AssetImage('images/download.jpg'),
+                        text:'Cleaning',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15),
+                      child: ImageTextButton(
+                        onPressed: () {},
+                        image: AssetImage('images/download.jpg'),
+                        text:'Cleaning',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: ImageTextButton(
+                        onPressed: () {},
+                        image: AssetImage('images/download.jpg'),
+                        text:'Cleaning',
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(height: 33),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 22),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
 
-                children: [
-                  ImageTextButton(
-                      onPressed: () {},
-                      image: AssetImage('images/download.jpg'),
-                      text:'Cleaning'),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                    onPressed: () {},
-                    image: AssetImage('images/download.jpg'),
-                    text:'Cleaning',
-                  ),
-                  SizedBox(width: 22),
-                  ImageTextButton(
-                    onPressed: () {},
-                    image: AssetImage('images/download.jpg'),
-                    text:'Cleaning',
-                  ),
-                ],
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: ImageTextButton(
+                          onPressed: () {},
+                          image: AssetImage('images/download.jpg'),
+                          text:'Cleaning'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15),
+                      child: ImageTextButton(
+                        onPressed: () {},
+                        image: AssetImage('images/download.jpg'),
+                        text:'Cleaning',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,),
+                      child: ImageTextButton(
+                        onPressed: () {},
+                        image: AssetImage('images/download.jpg'),
+                        text:'Cleaning',
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
 

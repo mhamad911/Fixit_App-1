@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(right: 15),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/1.png'),
                           text:'Cleaning'
                       ),
                     ),
@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,right: 15),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/2.png'),
                           text:'Cleaning'
                       ),
                     ),
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/3.jpg'),
                           text:'Cleaning'
                       ),
                     ),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(right: 15),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/4.jpg'),
                           text:'Cleaning'
                       ),
                     ),
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,right: 15),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/5.jpg'),
                           text:'Cleaning'
                       ),
                     ),
@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/6.jpg'),
                           text:'Cleaning'
                       ),
                     ),
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(right: 15),
                       child: ImageTextButton(
                         onPressed: () {},
-                        image: AssetImage('images/download.jpg'),
+                        image: AssetImage('images/7.jpg'),
                         text:'Cleaning',
                       ),
                     ),
@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,right: 15),
                       child: ImageTextButton(
                         onPressed: () {},
-                        image: AssetImage('images/download.jpg'),
+                        image: AssetImage('images/8.jpg'),
                         text:'Cleaning',
                       ),
                     ),
@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15),
                       child: ImageTextButton(
                         onPressed: () {},
-                        image: AssetImage('images/download.jpg'),
+                        image: AssetImage('images/9.jpg'),
                         text:'Cleaning',
                       ),
                     ),
@@ -206,14 +206,14 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(right: 15),
                       child: ImageTextButton(
                           onPressed: () {},
-                          image: AssetImage('images/download.jpg'),
+                          image: AssetImage('images/10.jpg'),
                           text:'Cleaning'),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15,right: 15),
                       child: ImageTextButton(
                         onPressed: () {},
-                        image: AssetImage('images/download.jpg'),
+                        image: AssetImage('images/11.jpg'),
                         text:'Cleaning',
                       ),
                     ),
@@ -221,7 +221,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(left: 15,),
                       child: ImageTextButton(
                         onPressed: () {},
-                        image: AssetImage('images/download.jpg'),
+                        image: AssetImage('images/12.jpg'),
                         text:'Cleaning',
                       ),
                     ),

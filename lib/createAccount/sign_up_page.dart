@@ -173,7 +173,6 @@ class _SignUpState extends State<SignUp> {
                   children: [
 
                     DropdownMenuExample(
-
                     ),
                     SizedBox(width: 22),
 

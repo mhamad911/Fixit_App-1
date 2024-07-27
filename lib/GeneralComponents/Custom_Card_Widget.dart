@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -5,8 +6,30 @@ import 'Custom_Button.dart';
 import 'Custom_Star_widget.dart';
 
 class CustomCard extends StatelessWidget {
+  final Image image;
+  final String name;
+  final String email;
+  final String desc;
+  final String number;
+  final String category;
+  final String local;
+
+  const CustomCard({
+    Key? key,
+    required this.image,
+    required this.email,
+    required this.desc,
+    required this.number,
+    required this.name,
+    required this.category,
+    required this.local,
+
+
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
+
     return Card(
       color: Colors.white,
       elevation: 4.0,
@@ -48,7 +71,7 @@ class CustomCard extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100.0),
                             child: Image.asset(
-                              'images/image2.png',
+                              'assets/U.png',
                               fit: BoxFit.cover,
                               width: 45,
                               height: 45,
@@ -87,7 +110,7 @@ class CustomCard extends StatelessWidget {
                                   children: [
                                     TextSpan(
 
-                                      text:  "Mhamad Alshame",
+                                      text:  name,
                                       style: GoogleFonts.getFont('Libre Caslon Text',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13,
@@ -104,7 +127,7 @@ class CustomCard extends StatelessWidget {
                                   children: [
                                     TextSpan(
 
-                                      text:  "Electrician",
+                                      text:  category,
                                       style: GoogleFonts.getFont('Libre Caslon Text',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 8,
@@ -129,7 +152,7 @@ class CustomCard extends StatelessWidget {
                                 children: [
                                   TextSpan(
 
-                                    text:  "im Dedicated, professional and highly experienced electrical engineer who has been in the field for nearly 20 years...... "
+                                    text:  desc
                                         ,
                                     style: GoogleFonts.getFont('Libre Caslon Text',
                                       fontWeight: FontWeight.w500,
@@ -159,7 +182,7 @@ class CustomCard extends StatelessWidget {
                                     children: [
                                       TextSpan(
 
-                                        text:  "Syria / Rif Damashq / 55666 Olive Viaduct"
+                                        text:  local
                                         ,
                                         style: GoogleFonts.getFont('Libre Caslon Text',
                                           fontWeight: FontWeight.w500,
@@ -199,7 +222,7 @@ class CustomCard extends StatelessWidget {
                                         children: [
                                           TextSpan(
 
-                                            text:  "Mhamad233@gmail.com"
+                                            text:  email
                                             ,
                                             style: GoogleFonts.getFont('Libre Caslon Text',
                                               fontWeight: FontWeight.w500,
@@ -220,7 +243,7 @@ class CustomCard extends StatelessWidget {
                                         children: [
                                           TextSpan(
 
-                                            text:  "0945113366"
+                                            text:  number
                                             ,
                                             style: GoogleFonts.getFont('Libre Caslon Text',
                                               fontWeight: FontWeight.w500,

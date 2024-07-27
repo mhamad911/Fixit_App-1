@@ -245,19 +245,19 @@ class _TaskpageState extends State<Taskpage> {
 
                         SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('build/images/Union.png'), text: '',),
+                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/Union.png'), text: '',),
                         SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('images/download.jpg'), text: '',),
+                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
                         SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('images/download.jpg'), text: '',),
+                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
                         SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('images/download.jpg'), text: '',),
+                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/6.jpg'), text: '',),
                         SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('images/download.jpg'), text: '',),
+                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/7.jpg'), text: '',),
                         SizedBox(width: 12),
 
 

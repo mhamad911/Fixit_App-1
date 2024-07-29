@@ -18,7 +18,7 @@ class _SplachScreenState extends State<SplachScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            Lottie.asset('assets/Logo.json'),
+            Lottie.asset('assets/logo.json'),
           ],
         ),
       )

@@ -23,8 +23,8 @@ final double height;
    final int textcolor;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
+    return ElevatedButton(
+      onPressed: onPressed,
       child: Container(
         // alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -39,7 +39,8 @@ final double height;
                   spreadRadius: 0.5,
                   offset: Offset.fromDirection(90))
             ]),
-        width: width,
+        width: MediaQuery.of(context).size.width * width,
+        height: MediaQuery.of(context).size.width * height,
         margin: const EdgeInsets.all(2),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical:14),
         child: Text(

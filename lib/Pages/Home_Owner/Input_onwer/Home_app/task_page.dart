@@ -199,6 +199,12 @@ class _TaskpageState extends State<Taskpage> {
                 Padding(padding: EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
+                    validator: (value) {
+                      // add your custom validation here.
+                      if (value!.isEmpty) {
+                        return 'Please enter some text';
+                      }
+                    },
                     maxLength: 100,
                     obscureText: false,
                     controller: locationController,

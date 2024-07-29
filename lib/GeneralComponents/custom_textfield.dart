@@ -10,9 +10,11 @@ class CustomTextField extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final TextInputType inputType;
   final int maxLength;
+  final String? Function(String?)? validator;
   // final String? Function(String?)? validator;
   const CustomTextField({
     Key? key,
+    required this.validator,
     required this.controller,
     required this.name,
     required this.prefixIcon,
@@ -34,6 +36,7 @@ class CustomTextField extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(11)),
 
       child: TextFormField(
+        validator: validator,
         enabled: true,
         controller: controller,
         textCapitalization: textCapitalization,

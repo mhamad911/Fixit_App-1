@@ -73,16 +73,16 @@ class CustomCard extends StatelessWidget {
                             child: Image.asset(
                               'assets/U.png',
                               fit: BoxFit.cover,
-                              width: 45,
-                              height: 45,
+                                width: MediaQuery.of(context).size.width * 0.1,
+                                height: MediaQuery.of(context).size.width * 0.1
                             ),
                           ),
                         ),
                       ),
                           CustomButton(
                             fontSize:6.5,
-                  width: 50,
-                  height: 20,
+                            width: 0.12,
+                            height: 0.05,
                   textcolor: 0xffffffff,
                   text: 'Hire Now',
                   backgroundColor: Color(0xff6A3BA8),

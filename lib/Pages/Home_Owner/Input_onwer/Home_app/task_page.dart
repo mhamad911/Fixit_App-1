@@ -1,14 +1,20 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/Category_Page/category_page.dart';
+import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/Home_page.dart';
 
 import '../../../../GeneralComponents/Custom_Button.dart';
 import '../../../../GeneralComponents/Custom_DropdownMenu.dart';
 import '../../../../GeneralComponents/Custome_image_Button_H.dart';
 import '../../../../GeneralComponents/custom_textfield.dart';
 import '../../../../GeneralComponents/custom_textfield_verify.dart';
+import '../../../../Provider/task_provider.dart';
 
 
 class Taskpage extends StatefulWidget {
@@ -19,12 +25,20 @@ class Taskpage extends StatefulWidget {
 
 class _TaskpageState extends State<Taskpage> {
 
+
   final titleController = TextEditingController();
   final describeController = TextEditingController();
   final locationController = TextEditingController();
+  String selectedCountry='';
+  String selectedCity='';
 
   @override
   Widget build(BuildContext context) {
+    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+
+    // تحديد عنوان الوجهة
+    taskProvider.setTargetUrl('https://yourapiendpoint.com/target-page'); // استبدل بـ URL الصحيح
+
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -183,11 +197,24 @@ class _TaskpageState extends State<Taskpage> {
                       children: [
 
                         DropdownMenuExample(
+                          items: ['Syria','Jordan','Qatar'],
+                          onSelected:(String value){
+                            setState(() {
+                              selectedCountry = value;
+                            });
+                          },
 
                         ),
                         SizedBox(width: 22),
 
                         DropdownMenuExample(
+                          items: ['Damascus','Aleepo','Homs','Amman','AL_Douha'],
+                          onSelected:(String value){
+                            setState(() {
+                              selectedCity=value;
+                            });
+                          },
+
 
                         ),
 
@@ -199,12 +226,7 @@ class _TaskpageState extends State<Taskpage> {
                 Padding(padding: EdgeInsets.symmetric(horizontal:  1
                 ),
                   child: CustomTextField(
-                    validator: (value) {
-                      // add your custom validation here.
-                      if (value!.isEmpty) {
-                        return 'Please enter some text';
-                      }
-                    },
+                    validator:(value){},
                     maxLength: 100,
                     obscureText: false,
                     controller: locationController,
@@ -250,8 +272,7 @@ class _TaskpageState extends State<Taskpage> {
                       children: [
 
                         SizedBox(width: 12),
-
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/Union.png'), text: '',),
+                        Container(child: ImageTextButton(),width:80,),
                         SizedBox(width: 12),
 
                         ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
@@ -280,9 +301,11 @@ class _TaskpageState extends State<Taskpage> {
                     textcolor: 0xffffffff,
                     text: 'Send Task',
                     backgroundColor: Color(0xff6A3BA8),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(content: Text('Task Send')));
+                    onPressed: () async{
+                      await taskProvider.submitTask();
+                      Provider.of<TaskProvider>(context, listen: false).updateButtonText2('Hire Now Again');
+                      Navigator.pop(context);
+
                     }, height: 50, fontSize: 12,
                   ),
                 ),
@@ -302,3 +325,38 @@ class _TaskpageState extends State<Taskpage> {
 
 }
 
+class ImageTextButton extends StatefulWidget {
+  @override
+  _ImageTextButtonState createState() => _ImageTextButtonState();
+}
+
+class _ImageTextButtonState extends State<ImageTextButton> {
+  File? _image;
+
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().pickImage(
+        source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        GestureDetector(
+          onTap: _pickImage,
+          child: _image == null
+              ? Image.asset('assets/Union.png',width: 80,)
+              : Image.file(_image!,height:80),
+        ),
+        // SizedBox(height: 100),
+        //Text(_image == null ? 'Add image' : 'Image selected.'),
+      ],
+    );
+  }
+}

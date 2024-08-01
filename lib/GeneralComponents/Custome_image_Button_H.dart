@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 class ImageTextButtonH extends StatelessWidget {
@@ -24,19 +23,22 @@ class ImageTextButtonH extends StatelessWidget {
         elevation: 8,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         clipBehavior: Clip.hardEdge,
-        child: InkWell(
-
+        child: GestureDetector(
           onTap: onPressed,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Ink.image(
-                width: 80,
-                image: image,
-                height: imageHeight,
-                fit: BoxFit.scaleDown,
-              ),
-            ],
+          child: InkWell(
+
+            onTap:onPressed,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Ink.image(
+                  width: 80,
+                  image: image,
+                  height: imageHeight,
+                  fit: BoxFit.scaleDown,
+                ),
+              ],
+            ),
           ),
         ),
     );

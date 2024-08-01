@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/Home_page.dart';
+import 'package:untitled14/createAccount/sign_up_page.dart';
+import '../Pages/Contractor/Input_contractor/Home_page/Contractor_Home_Page_Main.dart';
+import '../Provider/auth_provider.dart';
+import '../createAccount/change_password_c_email_page.dart';
 import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
 
@@ -14,21 +19,42 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
 
   final nameController = TextEditingController();
-  final emailController = TextEditingController();
   final passController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final _formKey =GlobalKey<FormState>();
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      final username = nameController.text;
+      final password = passController.text;
 
-  set _text(String text) {}
+      Provider.of<AuthProvider>(context, listen: false).signIn(
+          username, password).then((_) {
+        final userType = Provider
+            .of<AuthProvider>(context, listen: false)
+            .userType;
+        if (Provider
+            .of<AuthProvider>(context, listen: false)
+            .isAuthenticated) {
+          if (userType == 'Contractor') {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => ContractorHomePage()));
+          } else if (userType == 'HomeOwner') {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => HomePage()));
+          }
+        }
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(Provider
+              .of<AuthProvider>(context, listen: false)
+              .errorMessage)),
+        );
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    launchURL() async {
-      Uri url = Uri.parse('https://www.educative.io');
-      if (await launchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
@@ -38,10 +64,11 @@ class _SignInState extends State<SignIn> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
 
           ),
-          child:   Padding(
-            padding: const EdgeInsets.all(32.0),
+          child:   Container(
+            width:  double.maxFinite,
+            padding: const EdgeInsets.all(37.2),
             child: Form(
-              key: _formKey,
+              key:_formKey,
               child: Column  (
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -109,7 +136,7 @@ class _SignInState extends State<SignIn> {
                       validator: (value) {
                         // add your custom validation here.
                         if (value!.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter user name';
                         }
 
                       },
@@ -117,7 +144,7 @@ class _SignInState extends State<SignIn> {
                       controller: nameController,
                       name: "username...",
                       prefixIcon: Icons.person_rounded,
-                      inputType: TextInputType.name,
+                      inputType: TextInputType.emailAddress,
                       textCapitalization: TextCapitalization.words, suffixIcon: null,
                     ),
 
@@ -126,20 +153,20 @@ class _SignInState extends State<SignIn> {
                   Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                   ),
                     child: CustomTextField(
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        if (value.length < 5) {
-                          return 'Must be more than 5 charater';
-                        }
+                      validator: (value){ if (value == null || value.isEmpty) {
+                        return 'Please enter password';
+                      }
+                      if (value.length < 8) {
+                        return 'Must be more than 8 charater';
+                      }
                       },
                       maxLength: 100,
+
                       obscureText: true,
                       controller: passController,
                       name: "password...",
                       prefixIcon: Icons.lock,
-                      inputType: TextInputType.name,
+                      inputType: TextInputType.visiblePassword,
                       textCapitalization: TextCapitalization.words,
                       suffixIcon: Icons.remove_red_eye,
                     ),
@@ -164,7 +191,7 @@ class _SignInState extends State<SignIn> {
                         ),
 
                         child:  InkWell(
-                          onTap: launchURL,
+                          onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ChangePasswordPage())),
                           child:  RichText(
                             textAlign: TextAlign.right,
                             text: TextSpan(
@@ -191,23 +218,16 @@ class _SignInState extends State<SignIn> {
                   Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                   ),
                     child:   CustomButton(
-                      width: 0.8,
+                      width: 250,
                       textcolor: 0xffffffff,
                       text: 'Sign in',
                       backgroundColor: const Color(0xff6A3BA8),
-                      onPressed: () {
-                        // Validate returns true if the form is valid, or false otherwise.
-                        if (_formKey.currentState!.validate()) {
-                          // If the form is valid, display a snackbar. In the real world,
-                          // you'd often call a server or save the information in a database.
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                        }
-                      }, height: 0.11, fontSize: 12,
-
+                      // onPressed:_submit, دالة تسجيل الدخول
+                      onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContractorHomePage()));
+                      },
+                      height: 50, fontSize: 12,
                     ),
-
                   ),
                   const SizedBox(height: 24),
                   Padding(padding: const EdgeInsets.symmetric(horizontal:  1
@@ -215,7 +235,6 @@ class _SignInState extends State<SignIn> {
                     child:   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-
                         RichText(
                           text: TextSpan(
                               children: [
@@ -247,7 +266,7 @@ class _SignInState extends State<SignIn> {
                           ),
 
                           child:  InkWell(
-                            onTap: launchURL,
+                            onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context)=>SignUp())),
                             child:  RichText(
                               textAlign: TextAlign.right,
                               text: TextSpan(

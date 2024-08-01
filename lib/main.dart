@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:untitled14/Veiw/Splach_screen/splach_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'Provider/auth_provider.dart';
+import 'Provider/task_provider.dart';
+import 'Veiw/Splach_screen/splach_screen.dart';
 
 void main(){
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AuthProvider()),
+          ChangeNotifierProvider(create: (_)=>TaskProvider()),
+        ],
+        child: MyApp(),
+      ));
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -14,10 +25,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: MaterialApp(
-        debugShowCheckedModeBanner:false,
-        home:SplachScreen(),
+        debugShowCheckedModeBanner: false,
+        home: SplachScreen(),
       ),
     );
   }

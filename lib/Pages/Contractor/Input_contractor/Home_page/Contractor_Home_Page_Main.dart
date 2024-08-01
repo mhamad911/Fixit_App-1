@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import  'package:url_launcher/url_launcher.dart';
+import 'package:untitled14/GeneralComponents/Custom_Card_CON_Widget.dart';
 import '../../../../GeneralComponents/Custom_App_bar.dart';
 import '../../../../GeneralComponents/Custom_Bottom_CON_naf_Bar.dart';
-import '../../../Home_Owner/Input_onwer/Home_app/Category_Page/Category_Page_Components/Custom_Card_Widget.dart';
+import '../../../../Model/task.dart';
 
 
 class ContractorHomePage extends StatefulWidget {
+  late final Task task;
 
   @override
   _ContractorHomePageState createState() => _ContractorHomePageState();
@@ -35,33 +36,33 @@ class _ContractorHomePageState extends State<ContractorHomePage> {
           width:  double.maxFinite,
           padding: EdgeInsets.all(25.0),
           child: Column  (
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 22,left: 12,top: 12),
-                  child: RichText(
-                    text: TextSpan(
-                        children: [
-                          TextSpan(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 22,left: 12,top: 12),
+                    child: RichText(
+                      text: TextSpan(
+                          children: [
+                            TextSpan(
 
-                            text:  "Today",
-                            style: GoogleFonts.getFont('Libre Caslon Text',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: Colors.black54,
+                              text:  "Today",
+                              style: GoogleFonts.getFont('Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                color: Colors.black54,
+                              ),
                             ),
-                          ),
 
-                        ]
+                          ]
+                      ),
                     ),
                   ),
                 ),
-              ),
-              CustomCard(),
-            ],
-
+                CustomCardCON(image: Image.asset(
+                    'assets/U.png'), email: 'omar@gmail.com', desc: 'Iwork', number: '099662259', name: 'omar', category:'elecronic', local: 'Damascus/syria'),
+              ]
           ),
         ),
 

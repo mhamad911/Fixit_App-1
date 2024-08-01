@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/task_page.dart';
 
 import '../../../../../../GeneralComponents/Custom_Button.dart';
 import '../../../../../../GeneralComponents/Custom_Star_widget.dart';
@@ -49,7 +50,7 @@ class CustomCard extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100.0),
                             child: Image.asset(
-                              'images/image2.png',
+                              'assets/U.png',
                               fit: BoxFit.cover,
                               width: 45,
                               height: 45,
@@ -59,14 +60,13 @@ class CustomCard extends StatelessWidget {
                       ),
                           CustomButton(
                             fontSize:6.5,
-                  width: 50,
-                  height: 20,
-                  textcolor: 0xffffffff,
-                  text: 'Hire Now',
-                  backgroundColor: Color(0xff6A3BA8),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text('Sign in')));
+                            width: 80,
+                            height: 0,
+                            textcolor: 0xffffffff,
+                            text: 'Hire No',
+                            backgroundColor: Color(0xff6A3BA8),
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder:(context)=>Taskpage()));
                   },
 
                           ),

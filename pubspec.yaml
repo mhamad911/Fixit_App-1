@@ -41,8 +41,10 @@ dependencies:
   textfields: ^0.0.3
   link_text: ^0.2.1
   lottie: ^3.1.2
-
+  image_picker: ^1.1.2
   url_launcher: any
+  provider: ^6.1.2
+  http: ^1.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,7 +69,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

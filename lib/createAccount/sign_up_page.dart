@@ -1,44 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled14/Veiw/sign_in_page.dart';
+import 'package:untitled14/createAccount/Register_Contractor.dart';
+import '../Provider/auth_provider.dart';
 import '/GeneralComponents/Custom_DropdownMenu.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({super.key});
-
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-
-  String? selectedValue;
-  late OverlayPortalController controller1;
-  late OverlayPortalController controller2;
-  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
   final emailController = TextEditingController();
-  final passController = TextEditingController();
+  final usernameController = TextEditingController();
+  final userTypeController = TextEditingController();
+  final countryController = TextEditingController();
+  final cityController = TextEditingController();
+  final streetController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  String selectedUserType = '';
+  String selectedCountry = '';
+  String selectedCity = '';
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      final registrationData = {
+        'username': usernameController.text,
+        'email': emailController.text,
+        'phone': phoneController.text,
+        'userType': selectedUserType,
+        'country': selectedCountry,
+        'city': selectedCity,
+        'street': streetController.text,
+        'password': passwordController.text,
+      };
+
+      Provider.of<AuthProvider>(context, listen: false).signUp(registrationData).then((_) {
+        if (Provider.of<AuthProvider>(context, listen: false).isAuthenticated) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
+        }
+      }).catchError((error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(Provider.of<AuthProvider>(context, listen: false).errorMessage)),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
-        child:SingleChildScrollView(
+        child: SingleChildScrollView(
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
-
           ),
-          child:   Padding(
+          child: Container(
+            width: double.maxFinite,
             padding: const EdgeInsets.all(37.2),
             child: Form(
-key: _formKey,
-              child: Column  (
+              key: _formKey,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
@@ -46,38 +78,34 @@ key: _formKey,
                     children: [
                       RichText(
                         text: TextSpan(
-                            children: [
-                              TextSpan(
-
-                                text:  "Create",
-                                style: GoogleFonts.getFont('Libre Caslon Text',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 24,
-                                  color: const Color(0xff6A3BA8),
-                                ),
+                          children: [
+                            TextSpan(
+                              text: "Create",
+                              style: GoogleFonts.getFont(
+                                'Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24,
+                                color: const Color(0xff6A3BA8),
                               ),
-                            ]
-
+                            ),
+                          ],
                         ),
-
                       ),
                       const SizedBox(width: 5),
                       RichText(
                         text: TextSpan(
-                            children: [
-                              TextSpan(
-
-                                text:  "account",
-                                style: GoogleFonts.getFont('Libre Caslon Text',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 24,
-                                  color: const Color(0xff000000),
-                                ),
+                          children: [
+                            TextSpan(
+                              text: "account",
+                              style: GoogleFonts.getFont(
+                                'Libre Caslon Text',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24,
+                                color: const Color(0xff000000),
                               ),
-                            ]
-
+                            ),
+                          ],
                         ),
-
                       ),
                     ],
                   ),
@@ -86,9 +114,9 @@ key: _formKey,
                     text: TextSpan(
                       children: [
                         TextSpan(
-
-                          text:  "Please Fill your information below ",
-                          style: GoogleFonts.getFont('Libre Caslon Text',
+                          text: "Please Fill your information below ",
+                          style: GoogleFonts.getFont(
+                            'Libre Caslon Text',
                             fontWeight: FontWeight.w500,
                             fontSize: 12,
                             color: const Color(0xff000000),
@@ -98,209 +126,204 @@ key: _formKey,
                     ),
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                        if (value!.isEmpty) {
+                          return 'please enter user name';
                         }
                       },
                       maxLength: 100,
-                      controller: nameController,
+                      controller: usernameController,
                       name: "username...",
                       prefixIcon: Icons.person_rounded,
                       inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: null,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: null,
                     ),
-
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'please enter your email';
                         }
+                        return null;
                       },
                       maxLength: 100,
-                      controller: nameController,
+                      controller: emailController,
                       name: "Email...",
                       prefixIcon: Icons.email_rounded,
-                      inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: null,
+                      inputType: TextInputType.emailAddress,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: null,
                     ),
-
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some numbers';
+                          return 'please enter your phone number';
                         }
-
+                        return null;
                       },
                       maxLength: 100,
-                      obscureText: true,
-                      controller: passController,
+                      controller: phoneController,
                       name: "phone...",
                       prefixIcon: Icons.phone_android_rounded,
-                      inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: null,
+                      inputType: TextInputType.phone,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: null,
                     ),
-
                   ),
                   const SizedBox(height: 22),
-
-
-                  const Align(
-                    alignment: Alignment.bottomLeft, child:
-                  Column(
-                    children: [
-                      DropdownMenuExample(
-                      ),
-
-                    ],
-                  ),
-                  ),
-                  const SizedBox(height: 22),
-
-
-                  const Align(
-                    alignment: Alignment.bottomLeft, child:
-                  Row(
-                    children: [
-
-                      DropdownMenuExample(
-                      ),
-                      SizedBox(width: 22),
-
-                      DropdownMenuExample(
-
-                      ),
-
-                    ],
-                  ),
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: DropdownMenuExample(
+                      items: ['Home Owner', 'Contractor'],
+                      onSelected: (String value) {
+                        setState(() {
+                          selectedUserType = value;
+                          if(value=='Contractor'){
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>RegisterContractor()));
+                          }
+                        });
+                      },
+                    ),
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Row(
+                      children: [
+                        DropdownMenuExample(
+                          items: ['Syria', 'Jordan', 'Qatar'],
+                          onSelected: (String value) {
+                            setState(() {
+                              selectedCountry = value;
+                            });
+                          },
+                        ),
+                        const SizedBox(width: 22),
+                        DropdownMenuExample(
+                          items: ['Damascus', 'Aleppo', 'Homs', 'Amman', 'Doha'],
+                          onSelected: (String value) {
+                            setState(() {
+                              selectedCity = value;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
                   ),
+                  const SizedBox(height: 22),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                        if (value!.isEmpty) {
+                          return ' please enter street';
                         }
-
+                        return null;
                       },
                       maxLength: 100,
-                      obscureText: true,
-                      controller: passController,
+                      controller: streetController,
                       name: "type your street address...",
                       prefixIcon: Icons.streetview_rounded,
                       inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: null,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: null,
                     ),
-
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter password';
                         }
-                        if (value.length < 5) {
-                          return 'Must be more than 5 charater';
+                        if (value.length < 8) {
+                          return 'Must be more than 8 characters';
                         }
                       },
                       maxLength: 100,
                       obscureText: true,
-                      controller: passController,
+                      controller: passwordController,
                       name: "password...",
                       prefixIcon: Icons.phone_android_rounded,
                       inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: Icons.remove_red_eye,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: Icons.remove_red_eye,
                     ),
-
                   ),
                   const SizedBox(height: 22),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
+                          return 'Please enter password again';
                         }
-                        if (value != passController.text) {
-                          return 'Must be same password';
+                        if (value.length < 8) {
+                          return 'Must be more than 8 characters';
                         }
                       },
                       maxLength: 100,
                       obscureText: true,
-                      controller: passController,
+                      controller: confirmPasswordController,
                       name: "confirm password...",
                       prefixIcon: Icons.phone_android_rounded,
                       inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words, suffixIcon: Icons.remove_red_eye,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: Icons.remove_red_eye,
                     ),
-
                   ),
                   const SizedBox(height: 24),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal:  1
-                  ),
-                    child:   Row(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-
                       children: [
                         CustomButton(
-                          fontSize: 8,
-                          height: 0.11,
+                          fontSize: 12,
+                          height: 50,
                           textcolor: 0xffFFFFFF,
                           text: 'Register',
                           backgroundColor: const Color(0xff6A3BA8),
-                          width: 0.4,
+                          width: 120,
                           onPressed: () {
-                            // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Processing Data')),
-                              );
+                              _submit();
                             }
                           },
                         ),
-                        const SizedBox(width: 22  ),
+                        const SizedBox(width: 22),
                         CustomButton(
-                          fontSize: 8,
-                          height: 0.11,
+                          fontSize: 12,
+                          height: 50,
                           textcolor: 0xff6A3BA8,
-                          width: 0.4,
+                          width: 120,
                           text: 'Cancel',
                           backgroundColor: const Color(0xffFFFFFF),
                           onPressed: () {
-                            // Validate returns true if the form is valid, or false otherwise.
-
-                            }
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
+                          },
                         ),
                       ],
                     ),
                   ),
                 ],
-
               ),
             ),
           ),
-
         ),
       ),
     );
-
-
   }
-
 }

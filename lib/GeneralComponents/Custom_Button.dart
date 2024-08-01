@@ -15,12 +15,12 @@ class CustomButton extends StatelessWidget {
 
   }) : super(key: key);
   final double fontSize;
-final double height;
+  final double height;
   final String text;
   final Color backgroundColor;
   final Function() onPressed;
-   final double width;
-   final int textcolor;
+  final double width;
+  final int textcolor;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

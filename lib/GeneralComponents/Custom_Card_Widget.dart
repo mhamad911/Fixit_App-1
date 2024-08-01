@@ -1,7 +1,12 @@
-import 'package:flutter/foundation.dart';
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../Pages/Home_Owner/Input_onwer/Home_app/task_page.dart';
+import '../Provider/task_provider.dart';
 import 'Custom_Button.dart';
 import 'Custom_Star_widget.dart';
 
@@ -23,145 +28,133 @@ class CustomCard extends StatelessWidget {
     required this.name,
     required this.category,
     required this.local,
-
-
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-
-
-    return Card(
-      color: Colors.white,
-      elevation: 4.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      child: Container(
-        child: SingleChildScrollView( // Wrap with SingleChildScrollView
+    return Consumer<TaskProvider>(builder: (context, taskprovider, child) {
+      return Card(
+        color: Colors.white,
+        elevation: 4.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 18,right: 20,bottom: 9),
-                child: Container(
-                  child: StarDisplayWidget(filledStar:Icon(Icons.star, color: Colors.green, size: 11),
-                     unfilledStar: Icon(Icons.star, color: Colors.grey, size: 11),
-
-                  ),
+                padding: const EdgeInsets.only(top: 18, right: 20, bottom: 9),
+                child: StarDisplayWidget(
+                  filledStar: Icon(Icons.star, color: Colors.green, size: 11),
+                  unfilledStar: Icon(Icons.star, color: Colors.grey, size: 11),
                 ),
               ),
               Row(
                 children: [
-
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left:20,right: 20,bottom: 10 ),
+                        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 8,
-                                    spreadRadius: 2,
-                                    offset: Offset.fromDirection(90))
-                              ]),
+                            borderRadius: BorderRadius.circular(100),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8,
+                                spreadRadius: 2,
+                                offset: Offset.fromDirection(90),
+                              ),
+                            ],
+                          ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100.0),
                             child: Image.asset(
                               'assets/U.png',
                               fit: BoxFit.cover,
-                                width: MediaQuery.of(context).size.width * 0.1,
-                                height: MediaQuery.of(context).size.width * 0.1
+                              width: 45,
+                              height: 45,
                             ),
                           ),
                         ),
                       ),
-                          CustomButton(
-                            fontSize:6.5,
-                            width: 0.12,
-                            height: 0.05,
-                  textcolor: 0xffffffff,
-                  text: 'Hire Now',
-                  backgroundColor: Color(0xff6A3BA8),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text('Sign in')));
-                  },
-
-                          ),
+                      CustomButton(
+                        fontSize: 6.5,
+                        width: 80,
+                        height: 10,
+                        textcolor: 0xffffffff,
+                        text: taskprovider.buttonText2,
+                        backgroundColor: Color(0xff6A3BA8),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => Taskpage(),
+                            ),
+                          );
+                        },
+                      ),
                       SizedBox(height: 22),
-
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             RichText(
                               text: TextSpan(
-                                  children: [
-                                    TextSpan(
-
-                                      text:  name,
-                                      style: GoogleFonts.getFont('Libre Caslon Text',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: Color(0xff000000),
-                                      ),
+                                children: [
+                                  TextSpan(
+                                    text: name,
+                                    style: GoogleFonts.getFont(
+                                      'Libre Caslon Text',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13,
+                                      color: Color(0xff000000),
                                     ),
-
-                                  ]
+                                  ),
+                                ],
                               ),
                             ),
                             SizedBox(width: 18),
                             RichText(
                               text: TextSpan(
-                                  children: [
-                                    TextSpan(
-
-                                      text:  category,
-                                      style: GoogleFonts.getFont('Libre Caslon Text',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 8,
-                                        color: Color(0xff7F7F7F),
-                                      ),
+                                children: [
+                                  TextSpan(
+                                    text: category,
+                                    style: GoogleFonts.getFont(
+                                      'Libre Caslon Text',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 8,
+                                      color: Color(0xff7F7F7F),
                                     ),
-
-                                  ]
+                                  ),
+                                ],
                               ),
                             ),
-
                           ],
                         ),
-
                         SizedBox(height: 7),
-
                         Container(
-
                           width: 200,
                           child: RichText(
                             text: TextSpan(
-                                children: [
-                                  TextSpan(
-
-                                    text:  desc
-                                        ,
-                                    style: GoogleFonts.getFont('Libre Caslon Text',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 10,
-                                      color: Color(0xff000000),
-                                    ),
+                              children: [
+                                TextSpan(
+                                  text: desc,
+                                  style: GoogleFonts.getFont(
+                                    'Libre Caslon Text',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 10,
+                                    color: Color(0xff000000),
                                   ),
-
-                                ]
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -179,19 +172,17 @@ class CustomCard extends StatelessWidget {
                               width: 80,
                               child: RichText(
                                 text: TextSpan(
-                                    children: [
-                                      TextSpan(
-
-                                        text:  local
-                                        ,
-                                        style: GoogleFonts.getFont('Libre Caslon Text',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 7,
-                                          color: Color(0xff7F7F7F),
-                                        ),
+                                  children: [
+                                    TextSpan(
+                                      text: local,
+                                      style: GoogleFonts.getFont(
+                                        'Libre Caslon Text',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 7,
+                                        color: Color(0xff7F7F7F),
                                       ),
-
-                                    ]
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -219,19 +210,17 @@ class CustomCard extends StatelessWidget {
                                   width: 90,
                                   child: RichText(
                                     text: TextSpan(
-                                        children: [
-                                          TextSpan(
-
-                                            text:  email
-                                            ,
-                                            style: GoogleFonts.getFont('Libre Caslon Text',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 7,
-                                              color: Color(0xff7F7F7F),
-                                            ),
+                                      children: [
+                                        TextSpan(
+                                          text: email,
+                                          style: GoogleFonts.getFont(
+                                            'Libre Caslon Text',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 7,
+                                            color: Color(0xff7F7F7F),
                                           ),
-
-                                        ]
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -240,23 +229,20 @@ class CustomCard extends StatelessWidget {
                                   width: 90,
                                   child: RichText(
                                     text: TextSpan(
-                                        children: [
-                                          TextSpan(
-
-                                            text:  number
-                                            ,
-                                            style: GoogleFonts.getFont('Libre Caslon Text',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 7,
-                                              color: Color(0xff7F7F7F),
-                                            ),
+                                      children: [
+                                        TextSpan(
+                                          text: number,
+                                          style: GoogleFonts.getFont(
+                                            'Libre Caslon Text',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 7,
+                                            color: Color(0xff7F7F7F),
                                           ),
-
-                                        ]
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-
                               ],
                             ),
                           ],
@@ -264,14 +250,12 @@ class CustomCard extends StatelessWidget {
                       ],
                     ),
                   ),
-
                 ],
               ),
-
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import  'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 import '../../../GeneralComponents/Custom_Button.dart';
 import '../../../GeneralComponents/Custome_image_Button_H.dart';
 import '../../../GeneralComponents/custom_textfield_verify.dart';
+import '../../../Provider/task_provider.dart';
 
 
 
@@ -22,7 +23,6 @@ class _ContractPageState extends State<ContractPage> {
   final priceController = TextEditingController();
   final DateController = TextEditingController();
 
-  set _text(String _text) {}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -304,7 +304,7 @@ class _ContractPageState extends State<ContractPage> {
                         maxLength: 100,
                         controller: priceController,
                         prefixIcon: null,
-                        inputType: TextInputType.name,
+                        inputType: TextInputType.number,
                         textCapitalization: TextCapitalization.words, width: 210, align: TextAlign.left, height: 50,
                       ),
                     ],
@@ -342,7 +342,7 @@ class _ContractPageState extends State<ContractPage> {
                         maxLength: 100,
                         controller: DateController,
                         prefixIcon: null,
-                        inputType: TextInputType.name,
+                        inputType: TextInputType.datetime,
                         textCapitalization: TextCapitalization.words, width: 180, align: TextAlign.left, height: 50,
                       ),
                     ],
@@ -510,9 +510,8 @@ class _ContractPageState extends State<ContractPage> {
                     text: 'Send Contract',
                     backgroundColor: Color(0xff6A3BA8),
                     onPressed: () {
-                      ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(content: Text('Task Send')));
-                    }, height: 50, fontSize: 12,
+                      Provider.of<TaskProvider>(context, listen: false).updateButtonText('Waiting');
+                      Navigator.pop(context);                    }, height: 50, fontSize: 12,
                   ),
                 ),
 

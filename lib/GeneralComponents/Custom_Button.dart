@@ -23,8 +23,8 @@ class CustomButton extends StatelessWidget {
   final int textcolor;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
+    return InkWell(
+      onTap: onPressed,
       child: Container(
         // alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -39,8 +39,8 @@ class CustomButton extends StatelessWidget {
                   spreadRadius: 0.5,
                   offset: Offset.fromDirection(90))
             ]),
-        width: MediaQuery.of(context).size.width * width,
-        height: MediaQuery.of(context).size.width * height,
+        width: width,
+        height: height,
         margin: const EdgeInsets.all(2),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical:14),
         child: Text(

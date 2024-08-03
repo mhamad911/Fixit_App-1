@@ -10,7 +10,8 @@ import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+
+   SignIn({super.key});
 
   @override
   _SignInState createState() => _SignInState();
@@ -18,35 +19,42 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 
-  final nameController = TextEditingController();
-  final passController = TextEditingController();
-  final _formKey =GlobalKey<FormState>();
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      final username = nameController.text;
-      final password = passController.text;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
-      Provider.of<AuthProvider>(context, listen: false).signIn(
-          username, password).then((_) {
-        final userType = Provider
-            .of<AuthProvider>(context, listen: false)
-            .userType;
-        if (Provider
-            .of<AuthProvider>(context, listen: false)
-            .isAuthenticated) {
-          if (userType == 'Contractor') {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ContractorHomePage()));
-          } else if (userType == 'HomeOwner') {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomePage()));
+  void submit() {
+    if (_formKey.currentState!.validate()) {
+      final email = emailController.text;
+      final password = passwordController.text;
+
+      Provider.of<AuthProvider>(context, listen: false).signIn(email, password).then((_) {
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+        // التحقق من حالة التوثيق وطباعة القيم للعثور على المشاكل
+        debugPrint('Authenticated: ${authProvider.isAuthenticated}');
+        debugPrint('User Type: ${authProvider.userType}');
+        debugPrint('Token: ${authProvider.token}');
+
+        if (authProvider.isAuthenticated) {
+          // تأكد من نوع المستخدم ثم انتقل إلى الصفحة المناسبة
+          if (authProvider.userType == 'Home Owner') {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+          } else if (authProvider.userType == 'Contractor') {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ContractorHomePage()));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Unknown user type')),
+            );
           }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(authProvider.errorMessage)),
+          );
         }
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(Provider
-              .of<AuthProvider>(context, listen: false)
-              .errorMessage)),
+          SnackBar(content: Text('An error occurred. Please try again.')),
         );
       });
     }
@@ -134,18 +142,18 @@ class _SignInState extends State<SignIn> {
                   ),
                     child: CustomTextField(
                       validator: (value) {
-                        // add your custom validation here.
-                        if (value!.isEmpty) {
-                          return 'Please enter user name';
+                        if (value == null || value.isEmpty) {
+                          return 'please enter your email';
                         }
-
+                        return null;
                       },
                       maxLength: 100,
-                      controller: nameController,
-                      name: "username...",
-                      prefixIcon: Icons.person_rounded,
+                      controller: emailController,
+                      name: "Email...",
+                      prefixIcon: Icons.email_rounded,
                       inputType: TextInputType.emailAddress,
-                      textCapitalization: TextCapitalization.words, suffixIcon: null,
+                      textCapitalization: TextCapitalization.words,
+                      suffixIcon: null,
                     ),
 
                   ),
@@ -163,7 +171,7 @@ class _SignInState extends State<SignIn> {
                       maxLength: 100,
 
                       obscureText: true,
-                      controller: passController,
+                      controller: passwordController,
                       name: "password...",
                       prefixIcon: Icons.lock,
                       inputType: TextInputType.visiblePassword,
@@ -218,15 +226,14 @@ class _SignInState extends State<SignIn> {
                   Padding(padding: const EdgeInsets.symmetric(horizontal:  1
                   ),
                     child:   CustomButton(
+                    height: 50, fontSize: 12,
                       width: 250,
                       textcolor: 0xffffffff,
                       text: 'Sign in',
                       backgroundColor: const Color(0xff6A3BA8),
-                      // onPressed:_submit, دالة تسجيل الدخول
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContractorHomePage()));
-                      },
-                      height: 50, fontSize: 12,
+                      onPressed:() {
+                      submit();
+                      }
                     ),
                   ),
                   const SizedBox(height: 24),

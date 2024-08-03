@@ -2,76 +2,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled14/Model/user.dart'; // تأكد من أن هذا المسار صحيح
 
 import '../GeneralComponents/Custom_Button.dart';
 import '../GeneralComponents/Custom_DropdownMenu.dart';
 import '../GeneralComponents/custom_textfield.dart';
 import '../Provider/auth_provider.dart';
 import '../Veiw/sign_in_page.dart';
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends  StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: new ThemeData(scaffoldBackgroundColor: const Color(0xffFFFFFF)),
-      debugShowCheckedModeBanner: false,
-      home: RegisterContractor(),
-    );
-  }
-}
 
 class RegisterContractor extends StatefulWidget {
   const RegisterContractor({Key? key}) : super(key: key);
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _RegisterContractorState createState() => _RegisterContractorState();
 }
 
-class _SignUpState extends State<RegisterContractor> {
+class _RegisterContractorState extends State<RegisterContractor> {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
-  final usernameController = TextEditingController();
-  final userTypeController = TextEditingController();
+  final userNameController = TextEditingController();
   final countryController = TextEditingController();
   final cityController = TextEditingController();
   final streetController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final serviceType =TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   String selectedUserType = '';
   String selectedCountry = '';
   String selectedCity = '';
+  String selectedservice_type = '';
+  String? UserType;
 
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      final registrationData = {
-        'username': usernameController.text,
-        'email': emailController.text,
-        'phone': phoneController.text,
-        'userType': selectedUserType,
-        'country': selectedCountry,
-        'city': selectedCity,
-        'street': streetController.text,
-        'password': passwordController.text,
-        'serviceType':serviceType.text
-      };
-
-      Provider.of<AuthProvider>(context, listen: false).signUp(registrationData).then((_) {
-        if (Provider.of<AuthProvider>(context, listen: false).isAuthenticated) {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
-        }
-      }).catchError((error) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(Provider.of<AuthProvider>(context, listen: false).errorMessage)),
-        );
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +45,7 @@ class _SignUpState extends State<RegisterContractor> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Container(
-            width: double.maxFinite,
+            width: double.infinity,
             padding: const EdgeInsets.all(37.2),
             child: Form(
               key: _formKey,
@@ -148,12 +110,13 @@ class _SignUpState extends State<RegisterContractor> {
                     child: CustomTextField(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'please enter user name';
+                          return 'Please enter user name';
                         }
+                        return null;
                       },
                       maxLength: 100,
-                      controller: usernameController,
-                      name: "username...",
+                      controller: userNameController,
+                      name: "Username...",
                       prefixIcon: Icons.person_rounded,
                       inputType: TextInputType.name,
                       textCapitalization: TextCapitalization.words,
@@ -166,7 +129,7 @@ class _SignUpState extends State<RegisterContractor> {
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your email';
+                          return 'Please enter your email';
                         }
                         return null;
                       },
@@ -175,7 +138,7 @@ class _SignUpState extends State<RegisterContractor> {
                       name: "Email...",
                       prefixIcon: Icons.email_rounded,
                       inputType: TextInputType.emailAddress,
-                      textCapitalization: TextCapitalization.words,
+                      textCapitalization: TextCapitalization.none,
                       suffixIcon: null,
                     ),
                   ),
@@ -185,16 +148,16 @@ class _SignUpState extends State<RegisterContractor> {
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'please enter your phone number';
+                          return 'Please enter your phone number';
                         }
                         return null;
                       },
                       maxLength: 100,
                       controller: phoneController,
-                      name: "phone...",
+                      name: "Phone...",
                       prefixIcon: Icons.phone_android_rounded,
                       inputType: TextInputType.phone,
-                      textCapitalization: TextCapitalization.words,
+                      textCapitalization: TextCapitalization.none,
                       suffixIcon: null,
                     ),
                   ),
@@ -214,10 +177,10 @@ class _SignUpState extends State<RegisterContractor> {
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: DropdownMenuExample(
-                      items: ['Cleaning', 'Handyman','Movers','Landscaping','HVAC','Plumbing','Snow Removal','Eletrician','Roof Repair','Carpet Cleaning','Flooring','Carpenter',],
+                      items: ['Cleaning', 'Handyman', 'Movers', 'Landscaping', 'HVAC', 'Plumbing', 'Snow Removal', 'Electrician', 'Roof Repair', 'Carpet Cleaning', 'Flooring', 'Carpenter'],
                       onSelected: (String value) {
                         setState(() {
-                          selectedUserType = value;
+                          selectedservice_type = value;
                         });
                       },
                     ),
@@ -227,42 +190,45 @@ class _SignUpState extends State<RegisterContractor> {
                     alignment: Alignment.bottomLeft,
                     child: Row(
                       children: [
-                        DropdownMenuExample(
-                          items: ['Syria', 'Jordan', 'Qatar'],
-                          onSelected: (String value) {
-                            setState(() {
-                              selectedCountry = value;
-                            });
-                          },
+                        Expanded(
+                          child: DropdownMenuExample(
+                            items: ['Syria', 'Jordan', 'Qatar'],
+                            onSelected: (String value) {
+                              setState(() {
+                                selectedCountry = value;
+                              });
+                            },
+                          ),
                         ),
                         const SizedBox(width: 22),
-                        DropdownMenuExample(
-                          items: ['Damascus', 'Aleppo', 'Homs', 'Amman', 'Doha'],
-                          onSelected: (String value) {
-                            setState(() {
-                              selectedCity = value;
-                            });
-                          },
+                        Expanded(
+                          child: DropdownMenuExample(
+                            items: ['Damascus', 'Aleppo', 'Homs', 'Amman', 'Doha'],
+                            onSelected: (String value) {
+                              setState(() {
+                                selectedCity = value;
+                              });
+                            },
+                          ),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 22),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 1),
                     child: CustomTextField(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return ' please enter street';
+                          return 'Please enter street';
                         }
                         return null;
                       },
                       maxLength: 100,
                       controller: streetController,
-                      name: "type your street address...",
+                      name: "Street address...",
                       prefixIcon: Icons.streetview_rounded,
-                      inputType: TextInputType.name,
+                      inputType: TextInputType.streetAddress,
                       textCapitalization: TextCapitalization.words,
                       suffixIcon: null,
                     ),
@@ -276,16 +242,17 @@ class _SignUpState extends State<RegisterContractor> {
                           return 'Please enter password';
                         }
                         if (value.length < 8) {
-                          return 'Must be more than 8 characters';
+                          return 'Password must be at least 8 characters';
                         }
+                        return null;
                       },
                       maxLength: 100,
                       obscureText: true,
                       controller: passwordController,
-                      name: "password...",
-                      prefixIcon: Icons.phone_android_rounded,
-                      inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words,
+                      name: "Password...",
+                      prefixIcon: Icons.lock_rounded,
+                      inputType: TextInputType.visiblePassword,
+                      textCapitalization: TextCapitalization.none,
                       suffixIcon: Icons.remove_red_eye,
                     ),
                   ),
@@ -295,19 +262,20 @@ class _SignUpState extends State<RegisterContractor> {
                     child: CustomTextField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter password again';
+                          return 'Please confirm your password';
                         }
-                        if (value.length < 8) {
-                          return 'Must be more than 8 characters';
+                        if (value != passwordController.text) {
+                          return 'Passwords do not match';
                         }
+                        return null;
                       },
                       maxLength: 100,
                       obscureText: true,
                       controller: confirmPasswordController,
-                      name: "confirm password...",
-                      prefixIcon: Icons.phone_android_rounded,
-                      inputType: TextInputType.name,
-                      textCapitalization: TextCapitalization.words,
+                      name: "Confirm Password...",
+                      prefixIcon: Icons.lock_rounded,
+                      inputType: TextInputType.visiblePassword,
+                      textCapitalization: TextCapitalization.none,
                       suffixIcon: Icons.remove_red_eye,
                     ),
                   ),
@@ -324,11 +292,36 @@ class _SignUpState extends State<RegisterContractor> {
                           text: 'Register',
                           backgroundColor: const Color(0xff6A3BA8),
                           width: 120,
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _submit();
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                final newUser = User(
+                                  userName: userNameController.text,
+                                  email: emailController.text,
+                                  number: phoneController.text,
+                                  type: selectedUserType,
+                                  country: selectedCountry,
+                                  city: selectedCity,
+                                  address: streetController.text,
+                                  password: passwordController.text,
+                                  service_type:selectedservice_type,
+                                );
+                                context.read<AuthProvider>().signUp(newUser).then((_) {
+                                  if (context.read<AuthProvider>().isAuthenticated) {
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) => SignIn()),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(context.read<AuthProvider>().errorMessage)),
+                                    );
+                                  }
+                                }).catchError((error) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('An error occurred. Please try again.')),
+                                  );
+                                });
+                              }
                             }
-                          },
                         ),
                         const SizedBox(width: 22),
                         CustomButton(
@@ -340,7 +333,6 @@ class _SignUpState extends State<RegisterContractor> {
                           backgroundColor: const Color(0xffFFFFFF),
                           onPressed: () {
                             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
-
                           },
                         ),
                       ],

@@ -81,9 +81,9 @@ class CustomCard extends StatelessWidget {
                         ),
                       ),
                       CustomButton(
-                        fontSize: 6.5,
+                        fontSize: 7.5,
                         width: 80,
-                        height: 10,
+                        height: 50,
                         textcolor: 0xffffffff,
                         text: taskprovider.buttonText2,
                         backgroundColor: Color(0xff6A3BA8),

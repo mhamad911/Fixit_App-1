@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled14/Veiw/sign_in_page.dart';
-import 'package:untitled14/createAccount/Register_Contractor.dart';
+import '../Model/user.dart';
 import '../Provider/auth_provider.dart';
+import '../Veiw/sign_in_page.dart';
 import '/GeneralComponents/Custom_DropdownMenu.dart';
 import '/GeneralComponents/Custom_Button.dart';
 import '/GeneralComponents/custom_textfield.dart';
+import 'Register_Contractor.dart'; // استيراد صفحة Register_Contractor
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -18,10 +19,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
-  final usernameController = TextEditingController();
-  final userTypeController = TextEditingController();
-  final countryController = TextEditingController();
-  final cityController = TextEditingController();
+  final userNameController = TextEditingController();
   final streetController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
@@ -30,31 +28,41 @@ class _SignUpState extends State<SignUp> {
   String selectedUserType = '';
   String selectedCountry = '';
   String selectedCity = '';
-
+  String selectedService_type='';
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      final registrationData = {
-        'username': usernameController.text,
-        'email': emailController.text,
-        'phone': phoneController.text,
-        'userType': selectedUserType,
-        'country': selectedCountry,
-        'city': selectedCity,
-        'street': streetController.text,
-        'password': passwordController.text,
-      };
+      final user = User(
+        userName: userNameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        number: phoneController.text,
+        country: selectedCountry,
+        city: selectedCity,
+        address: streetController.text,
+        type: selectedUserType,
+        service_type: ''
+      );
 
-      Provider.of<AuthProvider>(context, listen: false).signUp(registrationData).then((_) {
-        if (Provider.of<AuthProvider>(context, listen: false).isAuthenticated) {
+      print('User data: ${user.toJson()}'); // التأكد من أن البيانات صحيحة قبل إرسالها
+
+      Provider.of<AuthProvider>(context, listen: false).signUp(user).then((_) {
+        final authProvider = Provider.of<AuthProvider>(context, listen: false);
+        if (authProvider.isAuthenticated) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignIn()));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(authProvider.errorMessage)),
+          );
         }
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(Provider.of<AuthProvider>(context, listen: false).errorMessage)),
+          SnackBar(content: Text('An error occurred. Please try again.')),
         );
       });
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -133,9 +141,10 @@ class _SignUpState extends State<SignUp> {
                         if (value!.isEmpty) {
                           return 'please enter user name';
                         }
+                        return null;
                       },
                       maxLength: 100,
-                      controller: usernameController,
+                      controller: userNameController,
                       name: "username...",
                       prefixIcon: Icons.person_rounded,
                       inputType: TextInputType.name,
@@ -189,8 +198,8 @@ class _SignUpState extends State<SignUp> {
                       onSelected: (String value) {
                         setState(() {
                           selectedUserType = value;
-                          if(value=='Contractor'){
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>RegisterContractor()));
+                          if (value == 'Contractor') {
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RegisterContractor()));
                           }
                         });
                       },
@@ -251,12 +260,13 @@ class _SignUpState extends State<SignUp> {
                         if (value.length < 8) {
                           return 'Must be more than 8 characters';
                         }
+                        return null;
                       },
                       maxLength: 100,
                       obscureText: true,
                       controller: passwordController,
                       name: "password...",
-                      prefixIcon: Icons.phone_android_rounded,
+                      prefixIcon: Icons.lock,
                       inputType: TextInputType.name,
                       textCapitalization: TextCapitalization.words,
                       suffixIcon: Icons.remove_red_eye,
@@ -273,12 +283,16 @@ class _SignUpState extends State<SignUp> {
                         if (value.length < 8) {
                           return 'Must be more than 8 characters';
                         }
+                        if (value != passwordController.text) {
+                          return 'Passwords do not match';
+                        }
+                        return null;
                       },
                       maxLength: 100,
                       obscureText: true,
                       controller: confirmPasswordController,
                       name: "confirm password...",
-                      prefixIcon: Icons.phone_android_rounded,
+                      prefixIcon: Icons.lock,
                       inputType: TextInputType.name,
                       textCapitalization: TextCapitalization.words,
                       suffixIcon: Icons.remove_red_eye,
@@ -298,10 +312,8 @@ class _SignUpState extends State<SignUp> {
                           backgroundColor: const Color(0xff6A3BA8),
                           width: 120,
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _submit();
-                            }
-                          },
+                            _submit();
+                          }
                         ),
                         const SizedBox(width: 22),
                         CustomButton(

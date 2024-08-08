@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled14/Provider/contractor_provider.dart';
 
 import 'Provider/auth_provider.dart';
 import 'Provider/task_provider.dart';
@@ -11,6 +12,7 @@ void main(){
         providers: [
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_)=>TaskProvider()),
+          ChangeNotifierProvider(create: (_)=>ContractorProvider())
         ],
         child: MyApp(),
       ));

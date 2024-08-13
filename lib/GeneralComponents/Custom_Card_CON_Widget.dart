@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled14/Pages/Contractor/Input_contractor/contract_page.dart';
+import 'package:untitled14/Pages/Contractor/Input_contractor/Create_contract_page.dart';
 import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/task_page.dart';
 
 import '../Provider/task_provider.dart';

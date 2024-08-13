@@ -270,26 +270,31 @@ class _TaskpageState extends State<Taskpage> {
                     height: 100,
                     child: Row(
                       children: [
+                        ListView(
+                          children: [
 
-                        SizedBox(width: 12),
-                        Container(child: ImageTextButton(),width:80,),
-                        SizedBox(width: 12),
+                            SizedBox(width: 12),
+                            Container(child: ImageTextButton(),width:80,),
+                            SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
-                        SizedBox(width: 12),
+                            ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
+                            SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
-                        SizedBox(width: 12),
+                            ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/5.jpg'), text: '',),
+                            SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/6.jpg'), text: '',),
-                        SizedBox(width: 12),
+                            ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/6.jpg'), text: '',),
+                            SizedBox(width: 12),
 
-                        ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/7.jpg'), text: '',),
-                        SizedBox(width: 12),
+                            ImageTextButtonH(onPressed: () {  },  image: const AssetImage('assets/7.jpg'), text: '',),
+                            SizedBox(width: 12),
 
 
+                          ],
+                        ),
                       ],
                     ),
+
                   ),
                 ),
 
@@ -309,7 +314,6 @@ class _TaskpageState extends State<Taskpage> {
                     }, height: 50, fontSize: 12,
                   ),
                 ),
-
 
               ],
 

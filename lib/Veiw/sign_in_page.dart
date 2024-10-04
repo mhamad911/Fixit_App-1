@@ -36,11 +36,11 @@ class _SignInState extends State<SignIn> {
         debugPrint('User Type: ${authProvider.userType}');
         debugPrint('Token: ${authProvider.token}');
 
-        if (authProvider.isAuthenticated) {
+        if (true)/*(authProvider.isAuthenticated)*/ {
           // تأكد من نوع المستخدم ثم انتقل إلى الصفحة المناسبة
-          if (authProvider.userType == 'Home Owner') {
+          if (true)/*(authProvider.userType == 'Home Owner')*/ {
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
-          } else if (authProvider.userType == 'Contractor') {
+          } /*else if (authProvider.userType == 'Contractor') {
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ContractorHomePage()));
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(authProvider.errorMessage)),
-          );
+          );*/
         }
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(

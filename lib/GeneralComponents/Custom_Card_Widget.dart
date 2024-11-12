@@ -72,7 +72,7 @@ class CustomCard extends StatelessWidget {
                               name,
                               style: GoogleFonts.libreCaslonText(
                                 fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                                 color: Colors.black,
                               ),
                               overflow: TextOverflow.ellipsis,
@@ -90,7 +90,7 @@ class CustomCard extends StatelessWidget {
                       Text(
                         category,
                         style: GoogleFonts.libreCaslonText(
-                          fontSize: 12,
+                          fontSize: 11,
                           color: Colors.grey[600],
                         ),
                       ),

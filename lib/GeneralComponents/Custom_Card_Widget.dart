@@ -146,7 +146,7 @@ class CustomCard extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => TaskPage()),
+                      MaterialPageRoute(builder: (context) => Taskpage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -225,15 +225,6 @@ class IconWithText extends StatelessWidget {
   }
 }
 
-class TaskPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Task Page")),
-      body: Center(child: Text("Task Page Content")),
-    );
-  }
-}
 
 
 

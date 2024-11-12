@@ -10,6 +10,15 @@ import '../Provider/task_provider.dart';
 import 'Custom_Button.dart';
 import 'Custom_Star_widget.dart';
 
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 class CustomCard extends StatelessWidget {
   final Image image;
   final String name;
@@ -32,230 +41,199 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskProvider>(builder: (context, taskprovider, child) {
-      return Card(
-        color: Colors.white,
-        elevation: 4.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 6,
+              spreadRadius: 1,
+            ),
+          ],
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 18, right: 20, bottom: 9),
-                child: StarDisplayWidget(
-                  filledStar: Icon(Icons.star, color: Colors.green, size: 11),
-                  unfilledStar: Icon(Icons.star, color: Colors.grey, size: 11),
-                ),
-              ),
-              Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 8,
-                                spreadRadius: 2,
-                                offset: Offset.fromDirection(90),
-                              ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100.0),
-                            child: Image.asset(
-                              'assets/U.png',
-                              fit: BoxFit.cover,
-                              width: 45,
-                              height: 45,
-                            ),
-                          ),
-                        ),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Profile Image
+                Container(
+                  width: 66,
+                  height: 66,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 6,
+                        spreadRadius: 0.2,
+                        offset: Offset(1, 1),
                       ),
-                      CustomButton(
-                        fontSize: 7.5,
-                        width: 80,
-                        height: 50,
-                        textcolor: 0xffffffff,
-                        text: taskprovider.buttonText2,
-                        backgroundColor: Color(0xff6A3BA8),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => Taskpage(),
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: 22),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: name,
-                                    style: GoogleFonts.getFont(
-                                      'Libre Caslon Text',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: 18),
-                            RichText(
-                              text: TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: category,
-                                    style: GoogleFonts.getFont(
-                                      'Libre Caslon Text',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 8,
-                                      color: Color(0xff7F7F7F),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 7),
-                        Container(
-                          width: 200,
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: desc,
-                                  style: GoogleFonts.getFont(
-                                    'Libre Caslon Text',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 10,
-                                    color: Color(0xff000000),
-                                  ),
-                                ),
-                              ],
+                  child: ClipOval(
+                    child: image,
+                  ),
+                ),
+                SizedBox(width: 16),
+                // Name, Category, and Star Ratings
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            name,
+                            style: GoogleFonts.libreCaslonText(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.black,
                             ),
                           ),
-                        ),
-                        SizedBox(height: 9),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.map,
-                              color: Color(0xff9747FF),
-                              size: 11,
-                              semanticLabel: 'Text to announce in accessibility modes',
+                          SizedBox(width: 8),
+                          Text(
+                            category,
+                            style: GoogleFonts.libreCaslonText(
+                              fontSize: 10,
+                              color: Colors.grey,
                             ),
-                            SizedBox(width: 5),
-                            Container(
-                              width: 80,
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: local,
-                                      style: GoogleFonts.getFont(
-                                        'Libre Caslon Text',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 7,
-                                        color: Color(0xff7F7F7F),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                          ),
+                          Spacer(),
+                          // Stars in top right corner
+                          Row(
+                            children: List.generate(4, (index) {
+                              return Icon(Icons.star, color: Colors.yellow, size: 12);
+                            })..add(Icon(Icons.star, color: Colors.grey, size: 12)),
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(height: 23),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              desc,
+                              style: GoogleFonts.libreCaslonText(
+                                fontSize: 11,
+                                color: Colors.black,
                               ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            Column(
-                              children: [
-                                Icon(
-                                  Icons.email_rounded,
-                                  color: Color(0xff9747FF),
-                                  size: 10,
-                                  semanticLabel: 'Text to announce in accessibility modes',
-                                ),
-                                SizedBox(height: 2),
-                                Icon(
-                                  Icons.phone_android_rounded,
-                                  color: Color(0xff9747FF),
-                                  size: 10,
-                                  semanticLabel: 'Text to announce in accessibility modes',
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 2),
-                            Column(
-                              children: [
-                                Container(
-                                  width: 90,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: email,
-                                          style: GoogleFonts.getFont(
-                                            'Libre Caslon Text',
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 7,
-                                            color: Color(0xff7F7F7F),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  width: 90,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: [
-                                        TextSpan(
-                                          text: number,
-                                          style: GoogleFonts.getFont(
-                                            'Libre Caslon Text',
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 7,
-                                            color: Color(0xff7F7F7F),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
+              ],
+            ),
+            // "Hire Again" Button on the left and Description on the right
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => TaskPage()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff6A3BA8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                  child: Text(
+                    'Hire Again',
+                    style: GoogleFonts.libreCaslonText(
+                      fontSize: 8,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(width: 8),
+                // Description aligned to the right of the button
+
+              ],
+            ),
+            SizedBox(height: 8),
+            // Location, Email, and Phone Row with reduced spacing
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconWithText(
+                  icon: Icons.location_on,
+                  text: local,
+                ),
+                IconWithText(
+                  icon: Icons.email_rounded,
+                  text: email,
+                ),
+                IconWithText(
+                  icon: Icons.phone_android_rounded,
+                  text: number,
+                ),
+              ],
+            ),
+          ],
         ),
-      );
-    });
+      ),
+    );
   }
 }
+
+// IconWithText widget for displaying Icon and Text
+class IconWithText extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  IconWithText({required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, color: Color(0xff9747FF), size: 12),
+        SizedBox(width: 2), // Reduced spacing
+        Container(
+          width: 70,
+          child: Text(
+            text,
+            style: GoogleFonts.libreCaslonText(
+              fontWeight: FontWeight.w500,
+              fontSize: 10,
+              color: Color(0xff7F7F7F),
+            ),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class TaskPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Task Page")),
+      body: Center(child: Text("Task Page Content")),
+    );
+  }
+}
+
+
+

@@ -35,8 +35,8 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
+
       color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       elevation: 6,
@@ -58,6 +58,7 @@ class CustomCard extends StatelessWidget {
                     backgroundImage: image.image,
                   ),
                 ),
+                SizedBox(width: 14),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

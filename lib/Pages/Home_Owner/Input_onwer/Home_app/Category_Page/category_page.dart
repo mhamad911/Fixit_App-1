@@ -92,6 +92,7 @@ final List<CustomCard> exampleCards = [
       }*/
   }
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: CustomAppBar(title: ''),
       resizeToAvoidBottomInset: false,
       body: Consumer<ContractorProvider>(

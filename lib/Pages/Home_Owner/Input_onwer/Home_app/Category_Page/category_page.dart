@@ -8,6 +8,7 @@ import '../Category_Page/Category_Page_Components/Custom_Sorting_Text_B.dart';
 import '../../../../../GeneralComponents/Custom_Bottom_naf_Bar.dart';
 
 class CategoryPage extends StatefulWidget {
+
   final String email;
   final String number;
   final String name;
@@ -43,11 +44,12 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+
 final List<CustomCard> exampleCards = [
       CustomCard(
         image: Image.asset('assets/2.png'),
         email: 'john.doe@example.com',
-        desc: 'This is an example description for John Doe, working for 20 years.',
+        desc: 'This is an example description for John Doe, working for 20 years  .',
         number: '123-456-7890',
         name: 'John Doe',
         category: 'Plumbing',
@@ -91,7 +93,6 @@ final List<CustomCard> exampleCards = [
   }
     return Scaffold(
       appBar: CustomAppBar(title: ''),
-      bottomNavigationBar: SnackBarBody(),
       resizeToAvoidBottomInset: false,
       body: Consumer<ContractorProvider>(
         builder: (context, contractorProvider, child) {

@@ -64,8 +64,8 @@ class CustomCard extends StatelessWidget {
               children: [
                 // Profile Image
                 Container(
-                  width: 55,
-                  height: 55,
+                  width: 66,
+                  height: 66,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     boxShadow: [
@@ -93,15 +93,15 @@ class CustomCard extends StatelessWidget {
                             name,
                             style: GoogleFonts.libreCaslonText(
                               fontWeight: FontWeight.bold,
-                              fontSize: 12,
+                              fontSize: 14,
                               color: Colors.black,
                             ),
                           ),
-                          SizedBox(width: 6),
+                          SizedBox(width: 8),
                           Text(
                             category,
                             style: GoogleFonts.libreCaslonText(
-                              fontSize: 8,
+                              fontSize: 10,
                               color: Colors.grey,
                             ),
                           ),
@@ -109,13 +109,13 @@ class CustomCard extends StatelessWidget {
                           // Stars in top right corner
                           Row(
                             children: List.generate(4, (index) {
-                              return Icon(Icons.star, color: Colors.yellow, size: 8);
-                            })..add(Icon(Icons.star, color: Colors.grey, size: 8)),
+                              return Icon(Icons.star, color: Colors.yellow, size: 12);
+                            })..add(Icon(Icons.star, color: Colors.grey, size: 12)),
                           ),
 
                         ],
                       ),
-                      SizedBox(height: 12),
+                      SizedBox(height: 23),
 
                       Row(
                         children: [
@@ -126,7 +126,7 @@ class CustomCard extends StatelessWidget {
                                 fontSize: 11,
                                 color: Colors.black,
                               ),
-                              maxLines: 4,
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),

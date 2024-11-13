@@ -105,7 +105,10 @@ class CustomCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                    
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF6A3BA8),
                     shape: RoundedRectangleBorder(

@@ -1,6 +1,17 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled14/Pages/Home_Owner/Input_onwer/Home_app/task_page.dart';
+
+import '../../../../../../GeneralComponents/Custom_Star_widget.dart';
+import '../../../../../Contractor/Input_contractor/profile_page.dart';
+
 
 class CustomCard extends StatelessWidget {
   final Image image;
@@ -10,186 +21,200 @@ class CustomCard extends StatelessWidget {
   final String number;
   final String category;
   final String local;
+  final double radius;
 
   const CustomCard({
     Key? key,
     required this.image,
+    required this.name,
     required this.email,
     required this.desc,
     required this.number,
-    required this.name,
     required this.category,
     required this.local,
+    this.radius = 55,
+
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => ContractorProfilePage()));
 
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                // Profile Image with shadow and rounded border
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                        offset: Offset(2, 2),
-                      ),
-                    ],
+      },
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        elevation: 6,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Top Row with Profile Picture, Name, Category, and Star Rating
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Material(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
+
+                    elevation: 8,
+                    child: CircleAvatar(
+                      radius: 28,
+                      backgroundImage: image.image,
+                    ),
                   ),
-                  child: ClipOval(
-                    child: image,
-                  ),
-                ),
-                SizedBox(width: 12),
-                // Name and Category
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: GoogleFonts.libreCaslonText(
-                          fontWeight: FontWeight.bold,
-                          fontSize: screenWidth * 0.05,
-                          color: Colors.black,
+                  SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Name, Category, and Rating in one row
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                name,
+                                style: GoogleFonts.libreCaslonText(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            const StarDisplayWidget(
+                              filledStar: Icon(Icons.star, color: Colors.yellow, size: 11),
+                              unfilledStar: Icon(Icons.star, color: Colors.grey, size: 11),
+                            ),
+                          ],
                         ),
-                      ),
-                      Text(
-                        category,
-                        style: GoogleFonts.libreCaslonText(
-                          fontSize: screenWidth * 0.03,
-                          color: Colors.grey,
+                        SizedBox(height: 4),
+
+                        Text(
+                          category,
+                          style: GoogleFonts.libreCaslonText(
+                            fontSize: 11,
+                            color: Colors.grey[600],
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8),
+              // Description and Hire Button Row
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Taskpage()));
+
+
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF6A3BA8),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ],
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                    ),
+                    child: Text(
+                      'Hire Now',
+                      style: GoogleFonts.libreCaslonText(
+                        color: Colors.white,
+                        fontSize: 8,
+                      ),
+                    ),
                   ),
-                ),
-                // Star Rating Display
-                Row(
-                  children: List.generate(4, (index) {
-                    return Icon(Icons.star, color: Colors.green, size: screenWidth * 0.04);
-                  })..add(Icon(Icons.star, color: Colors.grey, size: screenWidth * 0.04)),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            // Description
-            Text(
-              desc,
-              style: GoogleFonts.libreCaslonText(
-                fontSize: screenWidth * 0.035,
-                color: Colors.black,
+                  SizedBox(width: 8),
+
+                  Expanded(
+                    child: Text(
+                      desc,
+                      style: GoogleFonts.libreCaslonText(
+                        fontSize: 12,
+                        color: Colors.grey[800],
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+
+                ],
               ),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(height: 16),
-            // Location, Email, and Phone
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconWithText(
-                  icon: Icons.location_on,
-                  text: local,
-                  screenWidth: screenWidth,
-                ),
-                IconWithText(
-                  icon: Icons.email_rounded,
-                  text: email,
-                  screenWidth: screenWidth,
-                ),
-                IconWithText(
-                  icon: Icons.phone_android_rounded,
-                  text: number,
-                  screenWidth: screenWidth,
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            // "Hire Again" Button
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate to Task page
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => Taskpage()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff6A3BA8),
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+              SizedBox(height: 12),
+              // Bottom Row with Location, Email, and Phone
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Icon(Icons.location_on, size: 10, color: Color(0xFF6A3BA8)),
+                        SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            local,
+                            style: GoogleFonts.libreCaslonText(
+                              fontSize: 8,
+                              color: Colors.grey[600],
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                child: Text(
-                  'Hire Again',
-                  style: GoogleFonts.libreCaslonText(
-                    fontSize: screenWidth * 0.04,
-                    color: Colors.white,
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Icon(Icons.email, size: 10, color: Color(0xFF6A3BA8)),
+                        SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            email,
+                            style: GoogleFonts.libreCaslonText(
+                              fontSize: 8,
+                              color: Colors.grey[600],
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Icon(Icons.phone, size: 10, color: Color(0xFF6A3BA8)),
+                        SizedBox(width: 4),
+                        Text(
+                          number,
+                          style: GoogleFonts.libreCaslonText(
+                            fontSize: 8,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-// Widget to display Icon and Text with responsive font size
-class IconWithText extends StatelessWidget {
-  final IconData icon;
-  final String text;
-  final double screenWidth;
 
-  IconWithText({required this.icon, required this.text, required this.screenWidth});
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, color: Color(0xff9747FF), size: screenWidth * 0.04),
-        SizedBox(width: 5),
-        Container(
-          width: screenWidth * 0.3,  // Limits text width for responsiveness
-          child: Text(
-            text,
-            style: GoogleFonts.libreCaslonText(
-              fontWeight: FontWeight.w500,
-              fontSize: screenWidth * 0.03,
-              color: Color(0xff7F7F7F),
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 
